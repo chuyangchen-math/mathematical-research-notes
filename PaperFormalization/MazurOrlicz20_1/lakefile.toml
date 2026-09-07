@@ -1,0 +1,10 @@
+name = "MAZUR-ORLICZ 20-1"
+version = "0.1.0"
+defaultTargets = ["mazur-orlicz 20-1"]
+
+[[lean_lib]]
+name = "«MAZURORLICZ 20.1»"
+
+[[lean_exe]]
+name = "mazur-orlicz 20-1"
+root = "Main"

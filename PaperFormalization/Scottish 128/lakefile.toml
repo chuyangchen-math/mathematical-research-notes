@@ -1,0 +1,10 @@
+name = "Scottish 128"
+version = "0.1.0"
+defaultTargets = ["scottish 128"]
+
+[[lean_lib]]
+name = "«Scottish 128»"
+
+[[lean_exe]]
+name = "scottish 128"
+root = "Main"
