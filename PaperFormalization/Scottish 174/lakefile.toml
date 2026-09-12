@@ -1,0 +1,10 @@
+name = "Scottish 174"
+version = "0.1.0"
+defaultTargets = ["scottish 174"]
+
+[[lean_lib]]
+name = "«Scottish 174»"
+
+[[lean_exe]]
+name = "scottish 174"
+root = "Main"
