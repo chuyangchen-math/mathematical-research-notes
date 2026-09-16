@@ -211,3 +211,6 @@ theorem printed_problem_150_is_false : PrintedCounterexampleExists := by
   exact ⟨2, by norm_num, hsymm⟩
 
 end Nikliborc150
+
+#print axioms Nikliborc150.counterexample
+#print axioms Nikliborc150.printed_problem_150_is_false

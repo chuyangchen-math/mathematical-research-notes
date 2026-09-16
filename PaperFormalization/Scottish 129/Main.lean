@@ -1604,3 +1604,5 @@ theorem negative_answer_129 (pub : PublishedTheory) :
   }⟩
 
 end Nikliborc129
+
+#print axioms Nikliborc129.negative_answer_129

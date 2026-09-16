@@ -1476,3 +1476,5 @@ theorem negative_answer_128 (pub : PublishedTheory) :
   }⟩
 
 end Nikliborc128
+
+#print axioms Nikliborc128.negative_answer_128

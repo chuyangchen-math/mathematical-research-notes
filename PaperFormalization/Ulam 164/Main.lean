@@ -1014,7 +1014,7 @@ def MultiAdj (q M : ℕ) (x y : MultiState q M) : Prop :=
 lemma multiAdj_symm {q M : ℕ} {x y : MultiState q M} (h : MultiAdj q M x y) :
     MultiAdj q M y x := by
   rcases h with h | h | h
-  · exact Or.inl ⟨h.1, blockAdj_symm h.2⟩
+  · exact Or.inl ⟨h.1.symm, blockAdj_symm h.2⟩
   · exact Or.inr (Or.inr ⟨h.1, h.2.1, h.2.2⟩)
   · exact Or.inr (Or.inl ⟨h.1, h.2.1, h.2.2⟩)
 
@@ -1025,7 +1025,6 @@ lemma phaseNext_zero_iff {M : ℕ} (r : Fin (M+1)) :
   · simp [phaseNext, h]
   · have hrlt : r.1 < M := by omega
     simp [phaseNext, h]
-    omega
 
 /-- A permissible move that changes macroblock must use one of the two physical
     portals after applying the block permutation. -/
@@ -1037,7 +1036,7 @@ lemma cross_move_portals {q M : ℕ} {x y : MultiState q M}
   rcases hmove with hexact | hadj
   · exfalso
     apply hcross
-    simpa [hexact]
+    simp [hexact]
   · rcases hadj with hsame | hright | hleft
     · exfalso
       apply hcross
@@ -1121,15 +1120,15 @@ lemma multi_move_block_local {q M : ℕ} {x y : MultiState q M}
     y.1.1 = x.1.1 ∨ y.1.1 + 1 = x.1.1 ∨ x.1.1 + 1 = y.1.1 := by
   rcases h with hexact | hadj
   · left
-    simpa [hexact]
+    simp [hexact]
   · rcases hadj with hs | hr | hl
     · left
-      simpa using congrArg Fin.val hs.1
+      exact (congrArg Fin.val hs.1).symm
     · exact Or.inr (Or.inr hr.1)
     · exact Or.inr (Or.inl hl.1)
 
 /-- Coordinates of the concatenated slow corridor. -/
-def multiPos (q M : ℕ) (D η h : ℝ) (x : MultiState q M) : ℝ :=
+noncomputable def multiPos (q M : ℕ) (D η h : ℝ) (x : MultiState q M) : ℝ :=
   let start := (x.1.1 : ℝ) * (D+h)
   if x.2.1 = false then
     start + (x.2.2.1 : ℝ) * η / M
@@ -1155,42 +1154,61 @@ lemma multiblock_jump_lower
   rcases x with ⟨b,⟨side,r⟩⟩
   have hr := phase_term_bounds hM hη0 r
   have hn := phase_term_bounds hM hη0 (phaseNext M r)
-  cases side
-  · simp [multiPos, multiEquiv, blockEquiv]
-    have hdiff : 0 ≤
-        D - ((phaseNext M r).1 : ℝ)*η/M - ((r.1 : ℝ)*η/M) := by
-      nlinarith
-    rw [abs_of_nonneg hdiff]
-    nlinarith
-  · simp [multiPos, multiEquiv, blockEquiv]
-    have hdiff :
-        ((phaseNext M r).1 : ℝ)*η/M - (D - (r.1 : ℝ)*η/M) ≤ 0 := by
-      nlinarith
-    rw [abs_of_nonpos hdiff]
-    nlinarith
+  by_cases htriv : D - 2*η ≤ 0
+  · exact htriv.trans (abs_nonneg _)
+  · have hD : 2*η < D := by linarith
+    cases side
+    · change D - 2*η ≤
+        |(b.1 : ℝ)*(D+h) + D - ((phaseNext M r).1 : ℝ)*η/M -
+          ((b.1 : ℝ)*(D+h) + (r.1 : ℝ)*η/M)|
+      have hdiff : 0 ≤
+          D - ((phaseNext M r).1 : ℝ)*η/M - ((r.1 : ℝ)*η/M) := by
+        nlinarith [hr.2, hn.2]
+      have heq :
+          (b.1 : ℝ)*(D+h) + D - ((phaseNext M r).1 : ℝ)*η/M -
+            ((b.1 : ℝ)*(D+h) + (r.1 : ℝ)*η/M) =
+          D - ((phaseNext M r).1 : ℝ)*η/M - ((r.1 : ℝ)*η/M) := by
+        ring
+      rw [heq, abs_of_nonneg hdiff]
+      nlinarith [hr.2, hn.2]
+    · change D - 2*η ≤
+        |(b.1 : ℝ)*(D+h) + ((phaseNext M r).1 : ℝ)*η/M -
+          ((b.1 : ℝ)*(D+h) + D - (r.1 : ℝ)*η/M)|
+      have hdiff :
+          ((phaseNext M r).1 : ℝ)*η/M - (D - (r.1 : ℝ)*η/M) ≤ 0 := by
+        nlinarith [hr.2, hn.2]
+      have heq :
+          (b.1 : ℝ)*(D+h) + ((phaseNext M r).1 : ℝ)*η/M -
+            ((b.1 : ℝ)*(D+h) + D - (r.1 : ℝ)*η/M) =
+          ((phaseNext M r).1 : ℝ)*η/M - (D - (r.1 : ℝ)*η/M) := by
+        ring
+      rw [heq, abs_of_nonpos hdiff]
+      nlinarith [hr.2, hn.2]
 
 /-- The gap between two adjacent macroblocks is chosen so that the diameter of
 any one or two adjacent blocks is strictly smaller than the escape radius `2/q`. -/
 lemma adjacent_block_span_lt
-    {q : ℕ} (hq : 3 ≤ q) {D : ℝ} (hD0 : 0 < D) (hDq : D < 1/q) :
+    {q : ℕ} (hq : 3 ≤ q) {D : ℝ} (_hD0 : 0 < D) (hDq : D < 1/q) :
     2*D + (1-q*D)/(q-1) < 2/q := by
-  have hq0 : (0:ℝ) < q := by exact_mod_cast (show 0 < q by omega)
-  have hq1 : (0:ℝ) < q-1 := by
-    have : 1 < q := by omega
-    exact_mod_cast (Nat.sub_pos_iff_lt.mpr this)
+  have hq0 : (0:ℝ) < (q:ℝ) := by exact_mod_cast (show 0 < q by omega)
+  have hq1' : (1:ℝ) < (q:ℝ) := by exact_mod_cast (show 1 < q by omega)
+  have hq2' : (2:ℝ) < (q:ℝ) := by exact_mod_cast (show 2 < q by omega)
+  have hq1 : (0:ℝ) < (q:ℝ)-1 := by linarith
+  have hq2 : (0:ℝ) < (q:ℝ)-2 := by linarith
   have hqD : (q:ℝ)*D < 1 := by
     calc
       (q:ℝ)*D < (q:ℝ)*(1/(q:ℝ)) := mul_lt_mul_of_pos_left hDq hq0
       _ = 1 := by field_simp
-  have hq2 : (0:ℝ) < q-2 := by
-    exact_mod_cast (Nat.sub_pos_iff_lt.mpr (by omega : 2 < q))
   have hdiff :
-      2/q - (2*D + (1-q*D)/(q-1)) =
+      2/(q:ℝ) - (2*D + (1-(q:ℝ)*D)/((q:ℝ)-1)) =
         ((q:ℝ)-2)*(1-(q:ℝ)*D)/((q:ℝ)*((q:ℝ)-1)) := by
     field_simp
     ring
+  have hrhs : 0 < ((q:ℝ)-2)*(1-(q:ℝ)*D)/((q:ℝ)*((q:ℝ)-1)) := by
+    positivity
+  rw [← sub_pos]
   rw [hdiff]
-  positivity
+  exact hrhs
 
 /-- A right-going potential. -/
 def rightPotential {q M : ℕ} (x : MultiState q M) : ℕ :=
@@ -1208,7 +1226,7 @@ lemma rightPotential_move_bound {q M : ℕ} {x y : MultiState q M}
     have hlev := block_move_level_bound hlocal
     unfold rightPotential
     have hv : y.1.1 = x.1.1 := congrArg Fin.val hsame.symm
-    omega
+    nlinarith
   · have hxM := cross_move_source_level h hsame
     have hy0 := cross_move_target_level h hsame
     have hblk := multi_move_block_local h
@@ -1216,9 +1234,9 @@ lemma rightPotential_move_bound {q M : ℕ} {x y : MultiState q M}
     rcases hblk with h0 | hleft | hright
     · exfalso
       apply hsame
-      exact Fin.ext h0
-    · omega
-    · omega
+      exact Fin.ext h0.symm
+    · nlinarith
+    · nlinarith
 
 lemma leftPotential_move_bound {q M : ℕ} {x y : MultiState q M}
     (h : GMove (MultiAdj q M) (multiEquiv q M) x y) :
@@ -1227,7 +1245,7 @@ lemma leftPotential_move_bound {q M : ℕ} {x y : MultiState q M}
   · have hlocal := same_block_move_local h hsame
     have hlev := block_move_level_bound hlocal
     unfold leftPotential
-    have hv : y.1.1 = x.1.1 := congrArg Fin.val hsame.symm
+    rw [hsame]
     omega
   · have hxM := cross_move_source_level h hsame
     have hy0 := cross_move_target_level h hsame
@@ -1236,9 +1254,20 @@ lemma leftPotential_move_bound {q M : ℕ} {x y : MultiState q M}
     rcases hblk with h0 | hleft | hright
     · exfalso
       apply hsame
-      exact Fin.ext h0
-    · omega
-    · omega
+      exact Fin.ext h0.symm
+    · have hfac : q - 1 - y.1.1 = (q - 1 - x.1.1) + 1 := by
+        have hxlt := x.1.2
+        have hylt := y.1.2
+        omega
+      rw [hxM, hy0, hfac]
+      simp [Nat.add_mul]
+    · have hfac : q - 1 - x.1.1 = (q - 1 - y.1.1) + 1 := by
+        have hxlt := x.1.2
+        have hylt := y.1.2
+        omega
+      rw [hxM, hy0, hfac]
+      simp [Nat.add_mul]
+      omega
 
 lemma rightPotential_reach_bound {q M m : ℕ} {x y : MultiState q M}
     (h : GReachAt (MultiAdj q M) (multiEquiv q M) m x y) :
@@ -1268,34 +1297,33 @@ theorem block_separation_forces_delay {q M m : ℕ} {x y : MultiState q M}
     unfold rightPotential at hp
     have hxlev : blockLevel x.2 ≤ M := blockLevel_le M x.2
     have hylev : 0 ≤ blockLevel y.2 := Nat.zero_le _
+    have hmul := Nat.mul_le_mul_right M hright
+    simp [Nat.add_mul] at hmul
     omega
   · have hp := leftPotential_reach_bound hreach
     unfold leftPotential at hp
     have hxlev : blockLevel x.2 ≤ M := blockLevel_le M x.2
     have hylev : 0 ≤ blockLevel y.2 := Nat.zero_le _
+    have hfac : (q - 1 - x.1.1) + 2 ≤ q - 1 - y.1.1 := by
+      have hxlt := x.1.2
+      have hylt := y.1.2
+      omega
+    have hmul := Nat.mul_le_mul_right M hfac
+    simp [Nat.add_mul] at hmul
     omega
 
 private lemma localCoord_bounds {M : ℕ} (hM : 1 ≤ M) {D η : ℝ}
     (hη0 : 0 ≤ η) (hηD : η ≤ D/2) (x : BlockState M) :
     0 ≤ (if x.1 = false then (x.2.1 : ℝ)*η/M else D-(x.2.1 : ℝ)*η/M) ∧
     (if x.1 = false then (x.2.1 : ℝ)*η/M else D-(x.2.1 : ℝ)*η/M) ≤ D := by
-  have hr : (x.2.1 : ℝ) ≤ M := by
-    exact_mod_cast (blockLevel_le M x)
   have hMr : (0 : ℝ) < M := by exact_mod_cast (show 0 < M by omega)
-  by_cases hs : x.1 = false
-  · simp [hs]
-    constructor
-    · positivity
-    · have hterm : (x.2.1 : ℝ)*η/M ≤ η := by
-        apply (div_le_iff₀ hMr).2
-        nlinarith
-      nlinarith
-  · have hs' : x.1 = true := by cases x.1 <;> simp_all
-    simp [hs']
-    have hterm : (x.2.1 : ℝ)*η/M ≤ η := by
-      apply (div_le_iff₀ hMr).2
-      nlinarith
-    constructor <;> nlinarith
+  have hterm : (x.2.1 : ℝ)*η/M ≤ η := by
+    exact (phase_term_bounds hM hη0 x.2).2
+  have hterm0 : 0 ≤ (x.2.1 : ℝ)*η/M := by
+    exact (phase_term_bounds hM hη0 x.2).1
+  cases x.1 <;> simp
+  · constructor <;> nlinarith
+  · constructor <;> nlinarith
 
 lemma multiPos_block_bounds {q M : ℕ} (hM : 1 ≤ M) (D η h : ℝ)
     (hη0 : 0 ≤ η) (hηD : η ≤ D/2) (x : MultiState q M) :
@@ -1304,7 +1332,11 @@ lemma multiPos_block_bounds {q M : ℕ} (hM : 1 ≤ M) (D η h : ℝ)
   rcases localCoord_bounds hM hη0 hηD x.2 with ⟨hl,hu⟩
   unfold multiPos
   dsimp
-  by_cases hs : x.2.1 = false <;> simp [hs] at hl hu ⊢ <;> linarith
+  by_cases hs : x.2.1 = false
+  · simp [hs] at hl hu ⊢
+    constructor <;> linarith
+  · simp [hs] at hl hu ⊢
+    constructor <;> linarith
 
 lemma same_or_adjacent_block_close
     {q M : ℕ} (hM : 1 ≤ M) (D η h : ℝ)
@@ -1318,10 +1350,12 @@ lemma same_or_adjacent_block_close
   · have hb : (x.1.1 : ℝ) = y.1.1 := by exact_mod_cast heq
     rw [abs_le]
     constructor <;> nlinarith
-  · have hb : (y.1.1 : ℝ) = x.1.1 + 1 := by exact_mod_cast hright
+  · have hb : (y.1.1 : ℝ) = x.1.1 + 1 := by
+      exact_mod_cast hright.symm
     rw [abs_le]
     constructor <;> nlinarith
-  · have hb : (x.1.1 : ℝ) = y.1.1 + 1 := by exact_mod_cast hleft
+  · have hb : (x.1.1 : ℝ) = y.1.1 + 1 := by
+      exact_mod_cast hleft.symm
     rw [abs_le]
     constructor <;> nlinarith
 
@@ -1421,11 +1455,11 @@ def blockLinearEquiv (M : ℕ) : BlockState M ≃ Fin 2 × Fin (M+1) where
   left_inv := by
     intro x
     rcases x with ⟨b,r⟩
-    cases b <;> simp [blockLinearEquiv, boolFinEquiv]
+    cases b <;> simp [boolFinEquiv]
   right_inv := by
     intro y
     rcases y with ⟨s,r⟩
-    fin_cases s <;> simp [blockLinearEquiv, boolFinEquiv]
+    fin_cases s <;> simp [boolFinEquiv]
 
 /-- Rank inside one block in physical order. -/
 def blockRankEquiv (M : ℕ) : BlockState M ≃ Fin (2*(M+1)) :=
@@ -1460,80 +1494,139 @@ lemma blockRank_zero_iff {M : ℕ} (x : BlockState M) :
     (blockRankEquiv M x).1 = 0 ↔ x = leftPortal M := by
   rcases x with ⟨s,r⟩
   cases s
-  · simp [leftPortal]
+  · rw [blockRank_false_val]
+    constructor
+    · intro hr
+      apply Prod.ext
+      · rfl
+      · apply Fin.ext
+        simpa [leftPortal] using hr
+    · intro h
+      have hr := congrArg (fun z : BlockState M => z.2.1) h
+      simpa [leftPortal] using hr
+  · rw [blockRank_true_val]
     constructor
     · intro h
-      apply Prod.ext <;> simp
-      apply Fin.ext
-      simpa using h
-    · intro h; simpa [h]
-  · simp [leftPortal]
-    omega
+      have hr : r.1 ≤ M := Nat.le_of_lt_succ r.isLt
+      omega
+    · intro h
+      have hf := congrArg (fun z : BlockState M => z.1) h
+      simp [leftPortal] at hf
 
 lemma blockRank_last_iff {M : ℕ} (x : BlockState M) :
     (blockRankEquiv M x).1 = 2*(M+1)-1 ↔ x = rightPortal M := by
   rcases x with ⟨s,r⟩
   cases s
-  · simp [rightPortal]
-    omega
-  · simp [rightPortal]
+  · rw [blockRank_false_val]
     constructor
     · intro h
-      apply Prod.ext <;> simp
-      apply Fin.ext
+      have hr : r.1 ≤ M := Nat.le_of_lt_succ r.isLt
+      have hlast : M < 2*(M+1)-1 := by omega
       omega
     · intro h
-      simpa [h]
+      simp [rightPortal] at h
+  · rw [blockRank_true_val]
+    have hlast : 2*(M+1)-1 = 2*M+1 := by omega
+    constructor
+    · intro h
+      apply Prod.ext
+      · rfl
+      · apply Fin.ext
+        change r.1 = 0
+        rw [hlast] at h
+        omega
+    · intro h
+      have hr0 : r.1 = 0 := by
+        have hs := congrArg (fun z : BlockState M => z.2.1) h
+        simpa [rightPortal] using hs
+      rw [hr0, hlast]
+      omega
+
+private lemma concat_adj_forward
+    {B a b c d : ℕ} (hB : 0 < B) (ha : a < B) (hb : b < B)
+    (h : a + B*c + 1 = b + B*d) :
+    (c = d ∧ a + 1 = b) ∨ (c + 1 = d ∧ a = B-1 ∧ b = 0) := by
+  by_cases hcd : c = d
+  · left
+    refine ⟨hcd, ?_⟩
+    rw [hcd] at h
+    omega
+  · have hlt : c < d := by
+      by_contra hn
+      have hdc : d + 1 ≤ c := by omega
+      have hm := Nat.mul_le_mul_right B hdc
+      simp [Nat.mul_add, Nat.mul_comm] at hm
+      omega
+    have hstep : c + 1 = d := by
+      by_contra hn
+      have hgap : c + 2 ≤ d := by omega
+      have hm := Nat.mul_le_mul_right B hgap
+      simp [Nat.mul_add, Nat.mul_comm] at hm
+      omega
+    right
+    subst d
+    simp only [Nat.mul_add, Nat.mul_one] at h
+    have hab : a + 1 = b + B := by omega
+    have ha1 : a + 1 = B := by omega
+    refine ⟨?_, ?_⟩
+    · omega
+    · omega
 
 /-- The explicit rank equivalence preserves exactly the physical nearest-neighbor relation. -/
 theorem multiAdj_rank_iff {q M : ℕ} {x y : MultiState q M} :
     Adj (multiRankEquiv q M x) (multiRankEquiv q M y) ↔ MultiAdj q M x y := by
+  have hB : 0 < 2*(M+1) := by omega
+  have hxlt : (blockRankEquiv M x.2).1 < 2*(M+1) := (blockRankEquiv M x.2).2
+  have hylt : (blockRankEquiv M y.2).1 < 2*(M+1) := (blockRankEquiv M y.2).2
   constructor
   · intro h
-    have hxlt : (blockRankEquiv M x.2).1 < 2*(M+1) := (blockRankEquiv M x.2).2
-    have hylt : (blockRankEquiv M y.2).1 < 2*(M+1) := (blockRankEquiv M y.2).2
-    have hqxl : x.1.1 < q := x.1.2
-    have hqyl : y.1.1 < q := y.1.2
     simp [Adj, multiRank_val] at h
     rcases h with hxy | hyx
-    · by_cases hb : x.1.1 = y.1.1
+    · rcases concat_adj_forward hB hxlt hylt hxy with
+        ⟨hblk,hloc⟩ | ⟨hblk,hlast,hzero⟩
       · left
-        refine ⟨Fin.ext hb, ?_⟩
+        refine ⟨Fin.ext hblk, ?_⟩
         rw [← blockRank_adj_iff]
         simp [Adj]
-        exact Or.inl (by omega)
-      · have hb1 : x.1.1 + 1 = y.1.1 := by omega
-        have hlast : (blockRankEquiv M x.2).1 = 2*(M+1)-1 := by omega
-        have hzero : (blockRankEquiv M y.2).1 = 0 := by omega
-        exact Or.inr (Or.inl ⟨hb1, (blockRank_last_iff x.2).mp hlast,
+        exact Or.inl hloc
+      · exact Or.inr (Or.inl ⟨hblk,
+          (blockRank_last_iff x.2).mp hlast,
           (blockRank_zero_iff y.2).mp hzero⟩)
-    · by_cases hb : x.1.1 = y.1.1
+    · rcases concat_adj_forward hB hylt hxlt hyx with
+        ⟨hblk,hloc⟩ | ⟨hblk,hlast,hzero⟩
       · left
-        refine ⟨Fin.ext hb, ?_⟩
+        refine ⟨Fin.ext hblk.symm, ?_⟩
         rw [← blockRank_adj_iff]
         simp [Adj]
-        exact Or.inr (by omega)
-      · have hb1 : y.1.1 + 1 = x.1.1 := by omega
-        have hlast : (blockRankEquiv M y.2).1 = 2*(M+1)-1 := by omega
-        have hzero : (blockRankEquiv M x.2).1 = 0 := by omega
-        exact Or.inr (Or.inr ⟨hb1, (blockRank_last_iff y.2).mp hlast,
+        exact Or.inr hloc
+      · exact Or.inr (Or.inr ⟨hblk,
+          (blockRank_last_iff y.2).mp hlast,
           (blockRank_zero_iff x.2).mp hzero⟩)
   · intro h
     rcases h with hsame | hright | hleft
-    · rw [← blockRank_adj_iff] at hsame
-      rcases hsame with ⟨hb,hadj⟩
+    · rcases hsame with ⟨hb,hadj⟩
       have hv : x.1.1 = y.1.1 := congrArg Fin.val hb
-      simp [Adj, multiRank_val] at hadj ⊢
-      rcases hadj with h | h <;> omega
+      have hr := (blockRank_adj_iff).2 hadj
+      simp [Adj, multiRank_val] at hr ⊢
+      rw [hv]
+      rcases hr with hr | hr
+      · exact Or.inl (by omega)
+      · exact Or.inr (by omega)
     · rcases hright with ⟨hb,hx,hy⟩
       have hvx := (blockRank_last_iff x.2).2 hx
       have hvy := (blockRank_zero_iff y.2).2 hy
-      simp [Adj, multiRank_val, hb, hvx, hvy]
+      simp [Adj, multiRank_val, hvx, hvy]
+      left
+      rw [← hb]
+      simp [Nat.mul_add, Nat.add_mul, Nat.mul_comm, Nat.mul_left_comm]
       omega
     · rcases hleft with ⟨hb,hy,hx⟩
       have hvy := (blockRank_last_iff y.2).2 hy
       have hvx := (blockRank_zero_iff x.2).2 hx
-      simp [Adj, multiRank_val, hb, hvx, hvy]
+      simp [Adj, multiRank_val, hvx, hvy]
+      right
+      rw [← hb]
+      simp [Nat.mul_add, Nat.add_mul, Nat.mul_comm, Nat.mul_left_comm]
       omega
 
 /-- Conjugated permutation on the standard `Fin` indexing. -/
@@ -1541,7 +1634,7 @@ def indexedPerm (q M : ℕ) : Equiv.Perm (Fin (q*(2*(M+1)))) :=
   (multiRankEquiv q M).symm.trans ((multiEquiv q M).trans (multiRankEquiv q M))
 
 /-- Conjugated coordinates. -/
-def indexedPos (q M : ℕ) (D η h : ℝ) : Fin (q*(2*(M+1))) → ℝ :=
+noncomputable def indexedPos (q M : ℕ) (D η h : ℝ) : Fin (q*(2*(M+1))) → ℝ :=
   fun i => multiPos q M D η h ((multiRankEquiv q M).symm i)
 
 @[simp] lemma indexedPos_rank (q M : ℕ) (D η h : ℝ) (x : MultiState q M) :
@@ -1563,41 +1656,50 @@ lemma move_rank_iff {q M : ℕ} {x y : MultiState q M} :
       apply (multiRankEquiv q M).injective
       simpa using hex
     · right
-      have : MultiAdj q M (multiEquiv q M x) y := by
-        rw [← multiAdj_rank_iff]
+      have hadj' : Adj (multiRankEquiv q M (multiEquiv q M x))
+          (multiRankEquiv q M y) := by
         simpa using hadj
-      exact this
+      exact (multiAdj_rank_iff).1 hadj'
   · intro h
     rcases h with hex | hadj
     · left
       subst y
-      simp
+      exact (indexedPerm_rank q M x).symm
     · right
-      rw [multiAdj_rank_iff]
-      simpa using hadj
+      have hadj' : Adj (multiRankEquiv q M (multiEquiv q M x))
+          (multiRankEquiv q M y) := (multiAdj_rank_iff).2 hadj
+      simpa using hadj'
+
+lemma reach_to_generic {q M m : ℕ}
+    {i j : Fin (q*(2*(M+1)))}
+    (h : ReachAt (indexedPerm q M) m i j) :
+    GReachAt (MultiAdj q M) (multiEquiv q M) m
+      ((multiRankEquiv q M).symm i) ((multiRankEquiv q M).symm j) := by
+  induction h with
+  | refl z => exact GReachAt.refl _
+  | @tail k a b c hab hbc ih =>
+      apply GReachAt.tail ih
+      have hm : Move (indexedPerm q M)
+          (multiRankEquiv q M ((multiRankEquiv q M).symm b))
+          (multiRankEquiv q M ((multiRankEquiv q M).symm c)) := by
+        simpa using hbc
+      exact (move_rank_iff).1 hm
+
+lemma reach_from_generic {q M m : ℕ} {x y : MultiState q M}
+    (h : GReachAt (MultiAdj q M) (multiEquiv q M) m x y) :
+    ReachAt (indexedPerm q M) m (multiRankEquiv q M x) (multiRankEquiv q M y) := by
+  induction h with
+  | refl z => exact ReachAt.refl _
+  | @tail k a b c hab hbc ih =>
+      exact ReachAt.tail ih ((move_rank_iff).2 hbc)
 
 lemma reach_rank_iff {q M m : ℕ} {x y : MultiState q M} :
     ReachAt (indexedPerm q M) m (multiRankEquiv q M x) (multiRankEquiv q M y) ↔
       GReachAt (MultiAdj q M) (multiEquiv q M) m x y := by
   constructor
   · intro h
-    induction h with
-    | refl z => exact GReachAt.refl x
-    | @tail k a b c hab hbc ih =>
-        let a' := (multiRankEquiv q M).symm a
-        let b' := (multiRankEquiv q M).symm b
-        let c' := (multiRankEquiv q M).symm c
-        have hab' : GReachAt (MultiAdj q M) (multiEquiv q M) k a' b' := by
-          simpa [a',b'] using ih
-        have hbc' : GMove (MultiAdj q M) (multiEquiv q M) b' c' := by
-          rw [← move_rank_iff]
-          simpa [b',c'] using hbc
-        simpa [a',c'] using GReachAt.tail hab' hbc'
-  · intro h
-    induction h with
-    | refl z => exact ReachAt.refl _
-    | @tail k a b c hab hbc ih =>
-        exact ReachAt.tail ih ((move_rank_iff).2 hbc)
+    simpa using (reach_to_generic h)
+  · exact reach_from_generic
 
 lemma indexed_all_slow_of_generic {q M L : ℕ} {D η h ρ : ℝ}
     (hs : GAllSlow (multiPos q M D η h) (MultiAdj q M) (multiEquiv q M) ρ L) :
@@ -1632,7 +1734,8 @@ lemma block_pos_rank_strict {M : ℕ} (hM : 1 ≤ M) {D η : ℝ}
   cases sx <;> cases sy <;>
     simp [blockRank_false_val, blockRank_true_val] at hr ⊢
   · have hrr : (rx.1:ℝ) < ry.1 := by exact_mod_cast hr
-    positivity
+    have hmul : (rx.1:ℝ)*η < (ry.1:ℝ)*η := mul_lt_mul_of_pos_right hrr hη0
+    exact (div_lt_div_iff_of_pos_right hMr).2 hmul
   · have hxterm : (rx.1:ℝ)*η/M ≤ η := (phase_term_bounds hM (le_of_lt hη0) rx).2
     have hyterm : (ry.1:ℝ)*η/M ≤ η := (phase_term_bounds hM (le_of_lt hη0) ry).2
     nlinarith
@@ -1645,7 +1748,7 @@ lemma block_pos_rank_strict {M : ℕ} (hM : 1 ≤ M) {D η : ℝ}
 
 /-- The transported coordinates are strictly increasing. -/
 theorem indexed_ordered
-    (q M : ℕ) (hq : 1 ≤ q) (hM : 1 ≤ M)
+    (q M : ℕ) (_hq : 1 ≤ q) (hM : 1 ≤ M)
     (D η h : ℝ) (hD0 : 0 < D) (hη0 : 0 < η) (hh0 : 0 < h)
     (h2ηD : 2*η < D) (hηD : η ≤ D/2) :
     Ordered (indexedPos q M D η h) := by
@@ -1658,6 +1761,12 @@ theorem indexed_ordered
   have hyl : (blockRankEquiv M y.2).1 < 2*(M+1) := (blockRankEquiv M y.2).2
   have hblock : x.1.1 ≤ y.1.1 := by
     simp [multiRank_val] at hrank
+    by_contra hnot
+    have hrev : y.1.1 + 1 ≤ x.1.1 := by omega
+    have hmul := Nat.mul_le_mul_left (2*(M+1)) hrev
+    have hnext :
+        (2*(M+1))*y.1.1 + 2*(M+1) ≤ (2*(M+1))*x.1.1 := by
+      simpa [Nat.mul_add, Nat.add_comm, Nat.add_left_comm, Nat.add_assoc] using hmul
     omega
   by_cases hb : x.1 = y.1
   · have hbv : x.1.1 = y.1.1 := congrArg Fin.val hb
@@ -1665,25 +1774,34 @@ theorem indexed_ordered
       simp [multiRank_val, hbv] at hrank
       exact hrank
     have hp := block_pos_rank_strict hM hη0 h2ηD x.2 y.2 hlocal
-    unfold indexedPos multiPos
-    simp [x,y,hbv] at hp ⊢
-    exact hp
-  · have hbv : x.1.1 < y.1.1 := by omega
+    change multiPos q M D η h x < multiPos q M D η h y
+    unfold multiPos
+    dsimp
+    have hbR : (x.1.1 : ℝ) = (y.1.1 : ℝ) := by exact_mod_cast hbv
+    rw [hbR]
+    by_cases hsx : x.2.1 = false <;> by_cases hsy : y.2.1 = false <;>
+      simp [hsx, hsy] at hp ⊢ <;> linarith
+  · have hbvne : x.1.1 ≠ y.1.1 := by
+      intro hv
+      exact hb (Fin.ext hv)
+    have hbv : x.1.1 < y.1.1 := by omega
     have hx := multiPos_block_bounds hM D η h (le_of_lt hη0) hηD x
     have hy := multiPos_block_bounds hM D η h (le_of_lt hη0) hηD y
     have hbR : (x.1.1:ℝ) + 1 ≤ y.1.1 := by exact_mod_cast hbv
     unfold indexedPos
-    simp [x,y]
+    simp
     nlinarith
 
 lemma corridor_gap_positive {q : ℕ} (hq : 2 ≤ q) {D : ℝ} (hDq : D < 1/q) :
     0 < (1-q*D)/(q-1) := by
-  have hq0 : (0:ℝ) < q := by positivity
+  have hq0 : (0:ℝ) < (q:ℝ) := by exact_mod_cast (show 0 < q by omega)
+  have hq1 : (1:ℝ) < (q:ℝ) := by exact_mod_cast (show 1 < q by omega)
+  have hden : (0:ℝ) < (q:ℝ)-1 := by linarith
   have hmul : (q:ℝ)*D < 1 := by
     calc
       (q:ℝ)*D < (q:ℝ)*(1/(q:ℝ)) := mul_lt_mul_of_pos_left hDq hq0
       _ = 1 := by field_simp
-  have hden : (0:ℝ) < q-1 := by exact_mod_cast (Nat.sub_pos_iff_lt.mpr (by omega : 1 < q))
+  norm_num at hDq ⊢
   exact div_pos (by linarith) hden
 
 lemma corridor_endpoints
@@ -1697,24 +1815,40 @@ lemma corridor_endpoints
       (⟨0, by omega⟩, leftPortal M) := by
       apply (multiRankEquiv q M).injective
       apply Fin.ext
-      simp [firstIdx, multiRank_val, blockRank_zero_iff]
+      have hbr : (blockRankEquiv M (leftPortal M)).1 = 0 :=
+        (blockRank_zero_iff (leftPortal M)).2 rfl
+      simp [firstIdx, multiRank_val, hbr]
     rw [hz]
     simp [multiPos, leftPortal]
   · have hl : (multiRankEquiv q M).symm (lastIdx (by positivity : 0 < q*(2*(M+1)))) =
       (⟨q-1, by omega⟩, rightPortal M) := by
       apply (multiRankEquiv q M).injective
       apply Fin.ext
-      simp [lastIdx, multiRank_val, blockRank_last_iff]
+      have hbr : (blockRankEquiv M (rightPortal M)).1 = 2*(M+1)-1 :=
+        (blockRank_last_iff (rightPortal M)).2 rfl
+      simp [lastIdx, multiRank_val, hbr]
+      have hqdec : q = (q-1) + 1 := by omega
+      rw [hqdec]
+      simp [Nat.add_mul, Nat.mul_add, Nat.mul_comm, Nat.mul_left_comm]
       omega
     rw [hl]
-    simp [multiPos, rightPortal]
-    have hqR : (q:ℝ) ≠ 1 := by exact_mod_cast (show q ≠ 1 by omega)
-    field_simp
+    unfold multiPos
+    dsimp
+    simp [rightPortal]
+    have hq1nat : 1 ≤ q := by omega
+    have hcast : (((q-1 : ℕ) : ℝ)) = (q:ℝ)-1 := by
+      rw [Nat.cast_sub hq1nat]
+      norm_num
+    rw [hcast]
+    have hden : (q:ℝ)-1 ≠ 0 := by
+      have : (1:ℝ) < q := by exact_mod_cast (show 1 < q by omega)
+      linarith
+    field_simp [hden]
     ring
 
 lemma indexed_unit_interval
     (q M : ℕ) (hq : 2 ≤ q) (hM : 1 ≤ M)
-    (D η : ℝ) (hD0 : 0 < D) (hDq : D < 1/q)
+    (D η : ℝ) (_hD0 : 0 < D) (hDq : D < 1/q)
     (hη0 : 0 < η) (hηD : η ≤ D/2) :
     ∀ i : Fin (q*(2*(M+1))),
       0 ≤ indexedPos q M D η ((1-q*D)/(q-1)) i ∧
@@ -1723,21 +1857,41 @@ lemma indexed_unit_interval
   let x := (multiRankEquiv q M).symm i
   have hb := multiPos_block_bounds hM D η ((1-q*D)/(q-1)) (le_of_lt hη0) hηD x
   have hh := corridor_gap_positive hq hDq
-  have hqpos : (0:ℝ) < q := by positivity
-  have hmul : (q:ℝ)*D < 1 := by
-    calc
-      (q:ℝ)*D < (q:ℝ)*(1/(q:ℝ)) := mul_lt_mul_of_pos_left hDq hqpos
-      _ = 1 := by field_simp
-  unfold indexedPos
-  simp [x]
+  have hstep0 : 0 ≤ D + (1-q*D)/(q-1) := by
+    linarith [le_of_lt _hD0, le_of_lt hh]
+  change
+    0 ≤ multiPos q M D η ((1-q*D)/(q-1)) x ∧
+      multiPos q M D η ((1-q*D)/(q-1)) x ≤ 1
   constructor
-  · nlinarith
-  · have hbi : (x.1.1:ℝ) ≤ q-1 := by exact_mod_cast (Nat.le_pred_of_lt x.1.2)
-    have hid : (q-1:ℝ)*(D+(1-q*D)/(q-1))+D = 1 := by
+  · have hx0 : (0 : ℝ) ≤ x.1.1 := by positivity
+    have hstart_nonneg :
+        0 ≤ (x.1.1 : ℝ) * (D + (1-q*D)/(q-1)) :=
+      mul_nonneg hx0 hstep0
+    exact le_trans hstart_nonneg hb.1
+  · have hq1nat : 1 ≤ q := by omega
+    have hbinat : x.1.1 ≤ q-1 := by omega
+    have hcast : (((q-1 : ℕ) : ℝ)) = (q:ℝ)-1 := by
+      rw [Nat.cast_sub hq1nat]
+      norm_num
+    have hbi0 : (x.1.1:ℝ) ≤ ((q-1 : ℕ):ℝ) := by exact_mod_cast hbinat
+    have hbi : (x.1.1:ℝ) ≤ (q:ℝ)-1 := by
+      rw [hcast] at hbi0
+      exact hbi0
+    have hblock_upper :
+        (x.1.1:ℝ)*(D+(1-q*D)/(q-1))+D ≤
+          ((q:ℝ)-1)*(D+(1-q*D)/(q-1))+D := by
+      simpa [add_comm] using
+        (add_le_add_right (mul_le_mul_of_nonneg_right hbi hstep0) D)
+    have hid : ((q:ℝ)-1)*(D+(1-q*D)/(q-1))+D = 1 := by
+      have hq1R : (1:ℝ) < q := by exact_mod_cast (show 1 < q by omega)
       have hden : (q:ℝ)-1 ≠ 0 := by linarith
-      field_simp
+      field_simp [hden]
       ring
-    nlinarith
+    calc
+      multiPos q M D η ((1-q*D)/(q-1)) x
+          ≤ (x.1.1:ℝ)*(D+(1-q*D)/(q-1))+D := hb.2
+      _ ≤ (q-1:ℝ)*(D+(1-q*D)/(q-1))+D := hblock_upper
+      _ = 1 := hid
 
 /-- Full standard-`Fin` realization of the resonant lower construction. -/
 theorem resonant_lower_article_model
@@ -1773,7 +1927,7 @@ end Scottish164
 namespace Scottish164
 
 /-- Exact rational version of the eight-point sharpness example. -/
-def sharpPos : Fin 8 → ℝ :=
+noncomputable def sharpPos : Fin 8 → ℝ :=
   ![0, (1/4:ℝ), (29/100:ℝ), (12/25:ℝ), (13/25:ℝ),
     (77/100:ℝ), (39/50:ℝ), 1]
 
@@ -1877,7 +2031,11 @@ theorem resonant_permutation_arbitrarily_slow
   rcases LowerRealization.resonant_lower_article_model q hq ε hε0 hε L with
     ⟨M,D,η,hord,hzero,hone,hunit,hjump,hslow⟩
   let n : ℕ := q*(2*(M+1))
-  have hn : 2 ≤ n := by dsimp [n]; omega
+  have hn : 2 ≤ n := by
+    dsimp [n]
+    have hq1 : 1 ≤ q := by omega
+    have hB : 2 ≤ 2*(M+1) := by omega
+    exact le_trans hB (by simpa using Nat.mul_le_mul_right (2*(M+1)) hq1)
   refine ⟨n,hn,LowerRealization.indexedPos q M D η ((1-q*D)/(q-1)),
     LowerRealization.indexedPerm q M,?_⟩
   simpa [n] using And.intro hord
@@ -1938,3 +2096,9 @@ theorem resonant_exact_threshold
 
 end
 end Scottish164
+
+#print axioms Scottish164.problem164_permutation_exact_threshold
+#print axioms Scottish164.resonant_exact_threshold
+#print axioms Scottish164.literal_exact_phase_diagram
+#print axioms Scottish164.problem164_two_step_upper
+#print axioms Scottish164.LowerRealization.resonant_lower_article_model
