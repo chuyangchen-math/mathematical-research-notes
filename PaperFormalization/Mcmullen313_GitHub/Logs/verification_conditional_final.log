@@ -1,0 +1,120 @@
+Standalone Lean verification, 2026-10-13
+Command: lean -j4 --json -DwarningAsError=true -DmaxErrors=999999 McMullen313_Conditional_Final.lean
+Toolchain: leanprover/lean4:v4.35.0-rc3
+Diagnostics below are rendered from the actual JSON compiler output.
+
+information: line 3091, column 2
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+
+information: line 65537, column 0
+McMullen313Strict.ConditionalFinal.periodicSlope_of_externalVeech.{uX} {X : Type uX} [TopologicalSpace X]
+  (S : McMullen313Strict.RegularTranslationSurfaceGeometry.RegularTranslationSurface)
+  (hV : McMullen313Strict.SingularVeechBoundary.FiniteObstructionImpliesCompletelyPeriodic S) {v : ℂ} (hv : v ≠ 0)
+  (hob : McMullen313Strict.RegularDirectionalGeometry.HasFiniteLeafObstruction S v) :
+  McMullen313Strict.ExactMcMullenPeriodicSlopeTarget.PeriodicSlope S v
+
+information: line 65538, column 0
+McMullen313Strict.ConditionalFinal.horizontalPeriodicSlope_of_externalOrbitAndCylinder.{uX} {X : Type uX}
+  [TopologicalSpace X] (S : McMullen313Strict.RegularTranslationSurfaceGeometry.RegularTranslationSurface)
+  (horbit : McMullen313Strict.ExactMcMullenOrbitReduction.HorizontalDerivativeOrbitLocallyFinite S)
+  (mu : MeasureTheory.Measure McMullen313Strict.SL2RFiniteCovolume.SL2R) [mu.IsHaarMeasure]
+  (hlat : McMullen313Strict.SL2RFiniteCovolume.RealizedVeechIsLatticeFor S mu)
+  (hCylinder : McMullen313Strict.ExactMcMullenPeriodicSlopeTarget.HorizontalParabolicProducesPeriodicSlope S) :
+  McMullen313Strict.ExactMcMullenPeriodicSlopeTarget.PeriodicSlope S 1
+
+information: line 65539, column 0
+'McMullen313Strict.ConditionalFinal.periodicSlope_of_externalVeech' depends on axioms: [propext, choice, Quot.sound]
+
+information: line 65540, column 0
+'McMullen313Strict.ConditionalFinal.horizontalPeriodicSlope_of_externalOrbitAndCylinder' depends on axioms: [propext,
+ choice,
+ Quot.sound]
+
+information: line 65541, column 0
+McMullen313Strict.BoundedReducedEdgeNonminimality.boundedEdge_completelyPeriodic_of_leafwiseVeech.{uG, uP, uE, uI, uJ}
+  {G : Type uG} [Group G] (H : Subgroup G) {P : Type uP} {E : Type uE} [MulAction (↥H) P] [MulAction (↥H) E]
+  (D : McMullen313Strict.FullCopyUnfolding.EdgeGluingData H P E) [TopologicalSpace G] [TopologicalSpace P]
+  [DiscreteTopology G] [ContinuousConstSMul (↥H) P] [DistribMulAction G ℂ] [SMulCommClass G ℝ ℂ]
+  (V : McMullen313Strict.PlanarDevelopedEdgeData.Data H D)
+  (R : McMullen313Strict.PlanarRedundancyDevelopingData.Data H D V) {I : Type uI} {J : Type uJ}
+  (CI : McMullen313Strict.FullInteriorFlatCharts.InteriorCover H D V I)
+  (CE : McMullen313Strict.BoundedRegularAtlasRepair.BoundedFlatEdgeCover H D V J)
+  (hreflect : ∀ (e : E), D.reflect e ≠ 1) [Finite G] [T2Space (McMullen313Strict.FullCopyUnfolding.Full H D)]
+  [T1Space (McMullen313Strict.FullCopyUnfolding.Reduced H D)]
+  [T2Space (McMullen313Strict.FullCopyUnfolding.Reduced H D)] [Finite ↥H] (g0 : G) (p0 : P)
+  (hp0 : McMullen313Strict.CombinatorialFullRegularLocus.AtMostOneEdgeAt H D p0)
+  (hpoly : (McMullen313Strict.FullRegularTranslationAtlasConstruction.polygonSingularSet H D).Finite) (e0 : E)
+  (pEdge : P) (hpEdge : McMullen313Strict.FullCopyUnfolding.UniqueEdgeAt H D e0 pEdge) (b : ℂ) (hb : b ≠ 0)
+  (hnorm : ∀ (w : ℂ), b⁻¹ * D.reflect e0 • w = star (b⁻¹ * w))
+  (hV :
+    McMullen313Strict.LeafwiseVeechBoundary.NondenseMaximalHorizontalImpliesCompletelyPeriodic
+      (McMullen313Strict.BoundedReducedEdgeNonminimality.boundedEdgeAdaptedSurface H D V R CI CE hreflect g0 p0 hp0
+        hpoly e0 b hb hnorm)) :
+  McMullen313Strict.RegularDirectionalGeometry.CompletelyPeriodicDirection
+    (McMullen313Strict.BoundedReducedEdgeNonminimality.boundedEdgeAdaptedSurface H D V R CI CE hreflect g0 p0 hp0 hpoly
+      e0 b hb hnorm)
+    1
+
+information: line 65542, column 0
+'McMullen313Strict.BoundedReducedEdgeNonminimality.boundedEdge_completelyPeriodic_of_leafwiseVeech' depends on axioms: [propext,
+ choice,
+ Quot.sound]
+
+information: line 65543, column 0
+McMullen313Strict.AmbientAffineObstructionTransport.AllAffineAutomorphismsExtend.{uX} {X : Type uX} [TopologicalSpace X]
+  (S : McMullen313Strict.RegularTranslationSurfaceGeometry.RegularTranslationSurface) : Prop
+
+information: line 65544, column 0
+McMullen313Strict.ExactMcMullenSaddleReduction.SaddleHolonomyBoundedFinite.{uX} {X : Type uX} [TopologicalSpace X]
+  (S : McMullen313Strict.RegularTranslationSurfaceGeometry.RegularTranslationSurface) : Prop
+
+information: line 65545, column 0
+McMullen313Strict.LeafwiseVeechBoundary.NondenseMaximalHorizontalImpliesCompletelyPeriodic.{uX} {X : Type uX}
+  [TopologicalSpace X] (S : McMullen313Strict.RegularTranslationSurfaceGeometry.RegularTranslationSurface) : Prop
+
+information: line 65546, column 0
+McMullen313Strict.ConcretePolygonClosedEdges.t2Space_reduced.{uG, uE, uVtx} {G : Type uG} [Group G] (H : Subgroup G)
+  (P₀ : McMullen313Strict.CompactPlanarPolygonArea.Carrier) {E : Type uE} {Vtx : Type uVtx} [MulAction ↥H ↑P₀.carrier]
+  [MulAction (↥H) E] [Fintype E] [DecidableEq E] [Fintype Vtx] [DecidableEq Vtx]
+  (D : McMullen313Strict.FullCopyUnfolding.EdgeGluingData H (↑P₀.carrier) E) [DistribMulAction G ℂ]
+  [SMulCommClass G ℝ ℂ] (V : McMullen313Strict.PlanarDevelopedEdgeData.Data H D)
+  (Q : McMullen313Strict.ConcreteFiniteEuclideanPolygonSource.Data H D V)
+  (B : McMullen313Strict.GenuinePolygonBoundaryExit.BoundaryCompleteData H P₀ D V Q)
+  (R : McMullen313Strict.PlanarRedundancyDevelopingData.Data H D V)
+  (K : McMullen313Strict.OrthogonalRedundancySourceExactification.OrthogonalLinearActionData) [TopologicalSpace G]
+  [DiscreteTopology G] [Finite G] : T2Space (McMullen313Strict.FullCopyUnfolding.Reduced H D)
+
+information: line 65547, column 0
+McMullen313Strict.ActualHausdorffVertexImage.actualRemovableDiskHomeomorphImage_fromPolygon.{uG, uE, uVtx} {G : Type uG}
+  [Group G] (H : Subgroup G) (P₀ : McMullen313Strict.CompactPlanarPolygonArea.Carrier) {E : Type uE} {Vtx : Type uVtx}
+  [MulAction ↥H ↑P₀.carrier] [MulAction (↥H) E] [Fintype E] [DecidableEq E] [Fintype Vtx] [DecidableEq Vtx]
+  (D : McMullen313Strict.FullCopyUnfolding.EdgeGluingData H (↑P₀.carrier) E) [DistribMulAction G ℂ]
+  [SMulCommClass G ℝ ℂ] (V : McMullen313Strict.PlanarDevelopedEdgeData.Data H D)
+  (Q : McMullen313Strict.ConcreteFiniteEuclideanPolygonSource.Data H D V)
+  (B : McMullen313Strict.GenuinePolygonBoundaryExit.BoundaryCompleteData H P₀ D V Q)
+  (J : McMullen313Strict.GenuinePolygonVertexIncidence.Data H P₀ D V Q B)
+  (O : McMullen313Strict.RationalReducedVertexConeArithmetic.OrientedBoundaryData H P₀ D V Q B J)
+  (A : McMullen313Strict.RationalReducedVertexConeArithmetic.RationalAngleData H P₀ D V Q B J O)
+  (W : McMullen313Strict.CorrectedPolygonLocalWedge.LocalWedgeData H P₀ D V Q B J)
+  (R : McMullen313Strict.PlanarRedundancyDevelopingData.Data H D V)
+  (K : McMullen313Strict.OrthogonalRedundancySourceExactification.OrthogonalLinearActionData)
+  (CB : McMullen313Strict.SectorOrientationParityClosure.BoundaryParityData H P₀ D V Q B J) [TopologicalSpace G]
+  [DiscreteTopology G] [Finite G] [Finite ↥H]
+  (s : McMullen313Strict.ReducedVertexSectorAutomaton.SectorState H P₀ D V Q)
+  (hrem :
+    McMullen313Strict.RationalReducedVertexConeArithmetic.ArithmeticRemovable H P₀ D V Q B J O A (Quotient.mk'' s))
+  (ρ : ℝ) (hρ : ρ < McMullen313Strict.ForeignEdgeSeparationClosure.finalKernelRadius H P₀ D V Q B J W (↑s).2.1) :
+  { z // z ∈ Metric.closedBall 0 ρ } ≃ₜ
+    ↑(range (McMullen313Strict.ActualClosedFiniteKernel.actualRawMap H P₀ D V Q B J O A W s ρ hρ))
+
+Lean exit code: 0
+
+Errors: 0
+Warnings: 0
+SorryAx occurrences: 0
+Source SHA256: FB75D0274CBA3D9F7EC92DBB5BA173582827E767C4AC16946491DFC7DB3E0B37
