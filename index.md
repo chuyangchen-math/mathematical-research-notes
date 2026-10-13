@@ -54,3 +54,21 @@ First public release: **2026-09-15**
 Current version: **v1.0**
 
 
+
+## McMullen Question 3.13
+
+| Project | Paper | Lean formalization | Status |
+|---|---|---|---|
+| McMullen Question 3.13 | [PDF](PaperFormalization/Mcmullen313_GitHub/McMullen313.pdf) | [Lean](PaperFormalization/Mcmullen313_GitHub/McMullen313.lean) | Conditional formalization with explicit external geometric inputs |
+
+The McMullen 3.13 project contains a Lean 4 formalization of the verified core of the argument.
+
+The formalization isolates geometric assumptions as explicit external inputs rather than hidden axioms. The Lean development verifies the corresponding consequences under these stated assumptions.
+
+Files:
+
+- [Lean source](PaperFormalization/Mcmullen313_GitHub/McMullen313.lean)
+- [Paper PDF](PaperFormalization/Mcmullen313_GitHub/McMullen313.pdf)
+- [Verification records](PaperFormalization/Mcmullen313_GitHub/Logs/)
+- [Formalization status](PaperFormalization/Mcmullen313_GitHub/Partial/STATUS.md)
+
