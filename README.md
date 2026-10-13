@@ -1,96 +1,53 @@
-# \# PaperFormalization
+﻿# Mathematical Research Notes
 
-# 
+This repository contains formalized mathematical research notes, Lean 4 developments, and verification records.
 
-# Lean 4 formalizations accompanying mathematical papers by Chuyang Chen.
+## Projects
 
-# 
+### Scottish Book Problems
 
-# \## Formalized problems
+Formalizations and verification records for selected Scottish Book problems.
 
-# 
+### McMullen Question 3.13
 
-# \### Ulam Problem 164
+Location:
 
-# 
+`PaperFormalization/Mcmullen313_GitHub/`
 
-# Lean source:
+This directory contains a Lean 4 formalization of the verified core of the argument for McMullen's Question 3.13.
 
-# 
+## Formalization status
 
-# PaperFormalization/Ulam 164/Main.lean
+The current McMullen 3.13 development is a **conditional formalization**.
 
-# 
+The algebraic and combinatorial core of the argument has been formalized in Lean. Several geometric ingredients are isolated as explicit external inputs rather than hidden assumptions.
 
-# Final theorem:
+The remaining external inputs include:
 
-# 
+- leafwise Veech-type input;
+- finite obstruction periodicity input;
+- horizontal parabolic-cylinder input.
 
-# Ulam164.no\_universal\_k
+These inputs appear as explicit hypotheses in the Lean statements. They are not introduced through hidden axioms or unverified proof placeholders.
 
-# 
+The verified Lean theorems establish the corresponding periodicity conclusions from these stated geometric hypotheses.
 
-# \### Ulam Problem 165
+## Verification
 
-# 
+For McMullen Question 3.13:
 
-# Lean source:
+- Lean version: `leanprover/lean4:v4.35.0-rc3`
+- No `sorry` placeholders in the formalized development
+- External geometric assumptions are explicitly isolated
 
-# 
+## Repository structure
 
-# PaperFormalization/Ulam 165/Main.lean
+- `PaperFormalization/Mcmullen313_GitHub/`
+  - `McMullen313.lean` — main Lean formalization
+  - `Auxiliary/` — supporting formalizations
+  - `Logs/` — verification records
+  - `Partial/STATUS.md` — current formalization status
 
-# 
+## Scope
 
-# Final theorem:
-
-# 
-
-# Ulam165.exists\_ulam165\_counterexample
-
-# 
-
-# \## Verification
-
-# 
-
-# Lean version: 4.33.1
-
-# Mathlib version: 4.33.1
-
-# 
-
-# To verify Ulam 164:
-
-# 
-
-# cd "PaperFormalization/Ulam 164"
-
-# lake build
-
-# 
-
-# To verify Ulam 165:
-
-# 
-
-# cd "PaperFormalization/Ulam 165"
-
-# lake build
-
-# 
-
-# GitHub Actions automatically verifies both projects.
-
-# 
-
-# The current formalizations contain no sorry, admit, or user-declared axiom.
-
-# 
-
-# \## Papers
-
-# 
-
-# Links to the corresponding arXiv papers will be added after submission.
-
+The McMullen 3.13 repository provides a verified Lean framework for the formalized core. It does not claim that all geometric inputs have already been formalized inside Lean.
