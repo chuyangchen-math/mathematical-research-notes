@@ -1,0 +1,526 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Xt}{\widetilde X}
+\newcommand{\Lt}{\widetilde L}
+\newcommand{\wt}{\widetilde\omega}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\Ioc}{I_{\mathrm{oc}}}
+\newcommand{\Rcub}{\mathcal R^{\mathrm{cub}}}
+\newcommand{\EE}{\mathcal E}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\Per}{Per}
+\DeclareMathOperator{\Supp}{Supp}
+\title{Spin Parity and Period Obstructions}
+\author{Chuyang Chen}
+\date{October 2026}
+\newcommand{\publicationstatus}{%
+\begin{center}
+\fbox{\begin{minipage}{0.92\linewidth}
+\small
+\textbf{AI EXPLORATORY MATHEMATICAL NOTE}\\[2pt]
+\textbf{Status:} AI-assisted; \textbf{NO INDEPENDENT HUMAN REVIEW}\\
+\textbf{Version:} v1.1 (publication-format revision)\\
+\textbf{First repository publication:} October 24, 2026\\
+\textbf{Related Lean formalization:} Conditional F1. Internal arguments are checked relative to explicit external results and geometric interfaces; see the end matter for the exact scope.
+\end{minipage}}
+\end{center}
+\par\medskip
+}
+\hypersetup{pdftitle={Spin Parity and Period Obstructions},pdfauthor={Chuyang Chen}}
+\begin{document}
+\maketitle
+\publicationstatus
+\begin{abstract}
+This note addresses the two parts of Chen--Yu's Problem 3.2 for quadratic differentials.
+It gives a section-count interpretation of spin parity on the canonical double cover, and it
+gives a flat orientation-cover invariant distinguishing the regular and irregular exceptional
+components, with the component identification supplied by Chen--M\"oller's theorem.
+\end{abstract}
+\begin{quote}
+\small
+\textbf{Feedback.} This note has not undergone independent human mathematical review.
+Readers who know relevant prior literature, identify an error, or wish to check the argument
+are especially encouraged to contact the author listed at the end of the paper or to open an issue in the repository.
+\end{quote}
+
+\section{Introduction}
+Problem 3.2 in the survey of Chen and Yu \cite{ChenYu} asks for two refinements in the topology of strata
+of quadratic differentials. The first is to recover the spin parity of the canonical double cover
+by computing the dimension of the corresponding theta-characteristic. The second is to find
+a flat-geometric invariant distinguishing the regular and irregular connected components of the
+exceptional strata in genera three and four.
+
+The exceptional strata under discussion are
+\[
+\Q(9,-1),\quad \Q(6,3,-1),\quad \Q(3,3,3,-1)
+\]
+in genus three, and
+\[
+\Q(12),\quad \Q(9,3),\quad \Q(6,6),\quad \Q(6,3,3),\quad \Q(3,3,3,3)
+\]
+in genus four. Chen and M\"oller proved that the genus-three exceptional strata have two components,
+called regular and irregular, distinguished by a Brill--Noether condition involving one
+third of the zero divisor \cite[Theorem 6.1]{ChenMoller}. In genus four, \cite[Theorem 7.1]{ChenMoller} gives the analogous
+distinction on the two non-hyperelliptic regular/irregular components. The strata $\Q(6,6)$,
+$\Q(6,3,3)$, and $\Q(3,3,3,3)$ also have hyperelliptic components; statements below about regular
+and irregular genus-four components are made on the non-hyperelliptic part.
+
+The second part of this note uses Chen--M\"oller's component theorem as an input. The new
+point is to realize their Brill--Noether condition as an invariant on the canonical orientation
+double cover and as an anti-invariant Mittag--Leffler period obstruction. Thus the result is a
+conservative solution of the flat-geometric part of Problem 3.2, not an independent reproof of
+the Chen--M\"oller component theorem.
+
+\section{Spin parity from theta-characteristic sections}
+Let $(X,q)\in\Q(m_1,\ldots,m_n)$ be a primitive quadratic differential with at most simple poles, so
+$m_i\geq -1$. Assume that
+\[
+m_i\not\equiv 2\pmod 4
+\]
+for all $i$. Let
+\[
+\pi:\Xt\longrightarrow X
+\]
+be the canonical double cover and write
+\[
+\pi^*q=\wt^2.
+\]
+The cover is ramified exactly over odd-order singularities, including simple poles. Since $q$ is
+primitive, the cover is connected. Under the congruence assumption all singularities of $\wt$ have
+even order, so
+\[
+\Lt=\OO_{\Xt}\left(\frac12\dv(\wt)\right)
+\]
+is a theta-characteristic. We use the standard convention that the parity of a theta-characteristic
+$L$ is $h^0(L)\bmod 2$. Lanneau's constancy result and parity formula are stated via Arf-invariant
+methods \cite{Lanneau}; the following proof gives the requested $h^0$-interpretation.
+
+\begin{theorem}[Spin parity formula]\label{thm:spin}
+With the notation above,
+\[
+h^0(\Xt,\Lt)\equiv 1-g+\sum_i\left\lfloor\frac{m_i+1}{4}\right\rfloor\pmod 2.
+\]
+\end{theorem}
+\begin{proof}
+Write
+\[
+\dv(q)=\sum_i m_i z_i.
+\]
+Set
+\[
+A=\sum_i\left\lfloor\frac{m_i}{2}\right\rfloor z_i,\qquad
+B=\sum_{m_i\ \mathrm{odd}}z_i.
+\]
+Then
+\[
+\dv(q)=2A+B\sim 2K_X.
+\]
+Let
+\[
+M=K_X(-A).
+\]
+Then
+\[
+M^{\otimes 2}\cong\OO_X(B),
+\]
+and the canonical double cover satisfies
+\[
+\pi_*\OO_{\Xt}\cong\OO_X\oplus M^{-1}.
+\]
+Define
+\[
+D_+=\sum_i\left\lfloor\frac{m_i+1}{4}\right\rfloor z_i.
+\]
+We prove
+\begin{equation}\label{eq:splitting}
+\pi_*\Lt\cong\OO_X(D_+)\oplus K_X(-D_+).
+\end{equation}
+The divisor $\frac12\dv(\wt)$ is invariant under the deck involution $\tau$, so $\Lt$ carries its natural $\tau$-linearization.
+We decompose $\pi_*\Lt$ into invariant and anti-invariant summands.
+
+The calculation is local. If $m=4r$, the cover is unbranched and locally $\wt=\pm z^{2r}dz$ on each
+sheet. Thus $\Lt$ has coefficient $r$ above the point. The invariant part gives $\OO_X(rz)$. Multiplication
+of an anti-invariant local section by $\wt$ descends to a differential vanishing to order $r$, giving
+$K_X(-rz)$. This is the desired contribution because $\lfloor(4r+1)/4\rfloor=r$.
+
+If $m=4r+1$, put $z=w^2$. Then
+\[
+\pi^*q=(w^2)^{4r+1}(2w\,dw)^2=4w^{8r+4}dw^2,
+\]
+so $\ord(\wt)=4r+2$, and $\Lt$ has coefficient $2r+1$ at the ramification point. An invariant local section
+has only even Laurent terms, and the largest possible pole is $w^{-2r}=z^{-r}$, yielding $\OO_X(rz)$. The
+largest anti-invariant pole is $w^{-(2r+1)}$. Multiplying by $\wt=2w^{4r+2}dw$ gives $2w^{2r+1}dw=z^r dz$, so
+the anti-invariant summand gives $K_X(-rz)$. This matches $D_+=rz$.
+
+If $m=4r+3$, again $z=w^2$ and
+\[
+\pi^*q=(w^2)^{4r+3}(2w\,dw)^2=4w^{8r+8}dw^2.
+\]
+Thus $\ord(\wt)=4r+4$, and $\Lt$ has coefficient $2r+2$. The invariant part permits even Laurent
+poles up to order $2r+2$, hence gives $\OO_X((r+1)z)$. The highest allowed Laurent pole is even
+and therefore does not occur in the anti-invariant summand. The largest anti-invariant pole is
+$w^{-(2r+1)}$, and
+\[
+w^{-(2r+1)}\cdot 2w^{4r+4}dw=2w^{2r+3}dw=z^{r+1}dz.
+\]
+Thus the anti-invariant summand is $K_X(-(r+1)z)$, matching $D_+=(r+1)z$.
+
+If $m=-1$, locally $q=z^{-1}dz^2$. With $z=w^2$, one has $\pi^*q=4dw^2$, so $\wt$ is regular and nonvanishing.
+Hence $D_+$ receives no contribution. The invariant part gives $\OO_X$, and an anti-invariant
+holomorphic function is $wh(w^2)$. Multiplying by $dw$ gives $\frac12 h(z)dz$, an arbitrary holomorphic
+differential on the base. Thus the anti-invariant summand is $K_X$. Finally, if $m=0$, the cover is
+unbranched and $\wt$ is nonvanishing; the local splitting is $\OO_X\oplus K_X$.
+
+These local computations prove \eqref{eq:splitting}. Therefore
+\[
+h^0(\Xt,\Lt)=h^0(X,\OO_X(D_+))+h^0(X,K_X(-D_+)).
+\]
+By Riemann--Roch,
+\[
+h^0(X,\OO_X(D_+))-h^0(X,K_X(-D_+))=\deg D_++1-g.
+\]
+Modulo $2$, sum and difference agree. Hence
+\[
+h^0(\Xt,\Lt)\equiv\deg D_++1-g
+=1-g+\sum_i\left\lfloor\frac{m_i+1}{4}\right\rfloor\pmod 2.
+\]
+\end{proof}
+
+\section{The orientation-cover invariant}
+Let $(X,q)$ be in one of the genus-three exceptional strata, or in one of the non-hyperelliptic
+regular/irregular genus-four exceptional strata listed above. Let $Z(q)$ be the zero divisor of $q$,
+and define
+\[
+D_q=\frac13 Z(q).
+\]
+In genus three, the simple pole is not included in $D_q$. Let
+\[
+\pi:\Xt\longrightarrow X,\qquad \pi^*q=\omega^2
+\]
+be the canonical orientation double cover, with deck involution $\tau$. Then $\tau^*\omega=-\omega$. Define
+\[
+E_q=\frac12\pi^*D_q,\qquad \Ioc(q)=h^0(\Xt,\OO_{\Xt}(E_q))^-.
+\]
+
+\begin{lemma}\label{lem:integral}
+The divisor $E_q$ is integral.
+\end{lemma}
+\begin{proof}
+If $q$ has zero order $3a$ at $z$, then $D_q$ has coefficient $a$ at $z$. If $a$ is even, then the orientation
+cover is unbranched over $z$, and $\frac12\pi^*(az)$ has coefficient $a/2$ at each of the two points above $z$.
+If $a$ is odd, the cover is ramified and $\pi^*(az)=2a\widetilde z$, so $\frac12\pi^*(az)=a\widetilde z$. Hence all coefficients are
+integral.
+\end{proof}
+
+\begin{theorem}[Orientation-cover invariant]\label{thm:orientation}
+There is a natural isomorphism
+\[
+H^0(X,K_X(-D_q))\cong H^0(\Xt,\OO_{\Xt}(E_q))^-.
+\]
+Consequently,
+\[
+\Ioc(q)=h^0(X,K_X(-D_q)).
+\]
+\end{theorem}
+\begin{proof}
+Define
+\[
+\Phi:H^0(X,K_X(-D_q))\longrightarrow H^0(\Xt,\OO(E_q))^-
+\]
+by
+\[
+\Phi(\eta)=\frac{\pi^*\eta}{\omega}.
+\]
+It is anti-invariant because $\pi^*\eta$ is invariant and $\omega$ is anti-invariant. We check the pole bound.
+
+If $q$ has zero order $3a$ at $z$ and $a$ is even, the cover is unbranched and $\ord(\omega)=3a/2$ above $z$.
+Since $\eta$ vanishes to order at least $a$, the quotient has order at least $-a/2$, exactly the allowed
+pole order given by $E_q$. If $a$ is odd, write $z=w^2$. Then
+\[
+\pi^*q=4w^{6a+2}dw^2,\qquad \omega=2w^{3a+1}dw.
+\]
+If $\eta=z^s dz$ with $s\geq a$, then $\pi^*\eta=2w^{2s+1}dw$. Therefore
+\[
+\ord(\pi^*\eta/\omega)\geq (2a+1)-(3a+1)=-a,
+\]
+again exactly the pole bound prescribed by $E_q$. At a simple pole, $q=z^{-1}dz^2$, and with $z=w^2$
+one has $\pi^*q=4dw^2$. Thus $\omega$ is regular and nonvanishing. The pole is not in $D_q$, so $E_q$ has
+coefficient zero there, and the quotient is holomorphic.
+
+Conversely, let $f\in H^0(\Xt,\OO(E_q))^-$. Then $f\omega$ is $\tau$-invariant and hence descends to a meromorphic
+differential $\eta$ on $X$. The preceding calculations in reverse show that $\eta$ is holomorphic and
+vanishes along $D_q$. Indeed, in the unbranched case the order of $f\omega$ is at least $-a/2+3a/2=a$.
+In the ramified case the order is at least $-a+(3a+1)=2a+1$, which descends to a differential
+$z^s dz$ with $s\geq a$. At a simple pole, since $E_q$ has coefficient zero and $f$ is anti-invariant, locally
+$f(w)=c_1w+c_3w^3+\cdots$. Thus
+\[
+f\omega=2(c_1w+c_3w^3+\cdots)dw=(c_1+c_3z+\cdots)dz,
+\]
+which descends holomorphically. Hence $\eta\in H^0(X,K_X(-D_q))$, and the two constructions are
+inverse.
+\end{proof}
+
+\section{Anti-invariant period obstruction}
+The invariant in Theorem \ref{thm:orientation} can be formulated as a finite-dimensional Mittag--Leffler obstruction
+on the orientation cover. Let $\PP_q$ be the vector space of principal parts of meromorphic functions
+with poles bounded by $E_q$ along $\Supp(E_q)$. It is naturally a representation of $\tau$. Let
+\[
+\delta_q:\PP_q\longrightarrow H^1(\Xt,\OO_{\Xt})
+\]
+be the Mittag--Leffler coboundary map, and let
+\[
+\delta_q^-:\PP_q^-\longrightarrow H^1(\Xt,\OO_{\Xt})^-
+\]
+be its anti-invariant part. Then
+\begin{equation}\label{eq:kernel}
+\ker\delta_q^-\cong H^0(\Xt,\OO_{\Xt}(E_q))^-.
+\end{equation}
+\begin{theorem}[Anti-invariant obstruction criterion]\label{thm:obstruction}
+In the range of Theorem \ref{thm:orientation},
+\[
+\ker\delta_q^-\cong H^0(X,K_X(-D_q)).
+\]
+In particular,
+\[
+\Ioc(q)>0\quad\Longleftrightarrow\quad\delta_q^-\text{ is not injective}.
+\]
+\end{theorem}
+\begin{proof}
+By \eqref{eq:kernel} and Theorem \ref{thm:orientation},
+\[
+\ker\delta_q^-\cong H^0(\Xt,\OO(E_q))^-\cong H^0(X,K_X(-D_q)).
+\]
+This proves the theorem.
+\end{proof}
+
+There is an equivalent period formulation. Let $P\in\PP_q^-$. Locally $P$ is a principal part of a
+meromorphic function, hence $dP$ has zero residues at all points of $\Supp(E_q)$. Choose an anti-invariant
+meromorphic differential $\beta_P$ on $\Xt$ whose principal part is $dP$. This is possible by the
+usual Mittag--Leffler theorem for differentials of the second kind, because the prescribed residues
+are zero. The ambiguity in such a choice is an anti-invariant holomorphic differential.
+
+Fix an anti-invariant symplectic basis
+\[
+\gamma_1,\ldots,\gamma_{2g^-}
+\]
+of $H_1(\Xt,\mathbb Z)^-$. The periods of $\beta_P$, modulo the anti-invariant holomorphic ambiguity, define a
+linear obstruction map
+\[
+\Per_q^-:\PP_q^-\longrightarrow
+\mathbb C^{2g^-}/\Per(H^0(\Xt,K_{\Xt})^-).
+\]
+The condition $\Per_q^-(P)=0$ means that one can choose $\beta_P$ with all anti-invariant periods equal to
+zero. In that case integration gives a global anti-invariant meromorphic function with principal
+part $P$, so $P\in\ker\delta_q^-$. Conversely, if $P$ is the principal part of a global anti-invariant meromorphic
+function, then its differential has vanishing periods. Therefore
+\[
+\ker\Per_q^-=\ker\delta_q^-.
+\]
+This is the flat period-obstruction form of $\Ioc$.
+
+\section{Residual cubic and the component distinction}
+Let $\Q(\mu)$ be one of the exceptional quadratic strata in genus $3$ or $4$. Thus
+\[
+\mu=(3a_1,\ldots,3a_n,-1),\qquad \sum_i a_i=3,
+\]
+in genus $3$, and
+\[
+\mu=(3a_1,\ldots,3a_n),\qquad \sum_i a_i=4,
+\]
+in genus $4$. In genus $4$ we work on the non-hyperelliptic regular/irregular components. For
+$q\in\Q(\mu)$, put
+\[
+D_q=\frac13 Z(q).
+\]
+Let $P_q$ be the simple-pole divisor in genus $3$, and put $P_q=0$ in genus $4$. Then
+\[
+\dv(q)=3D_q-P_q.
+\]
+\begin{definition}[Residual cubic and positive loci]\label{def:residual}
+We say that $q$ admits a residual cubic Abelianization
+if there are Abelian differentials $\eta,\theta\in H^0(X,K_X)$ and an effective divisor $R\in X^{(g-2)}$
+such that
+\[
+\dv(\eta)=D_q+R,\qquad \dv(\theta)=3R+P_q,
+\]
+and
+\[
+q=\frac{\eta^3}{\theta}.
+\]
+We denote the residual cubic Abelianization locus by
+\[
+\Rcub_\mu=\{q:q\text{ admits a residual cubic Abelianization}\},
+\]
+and the positive orientation-cover locus by
+\[
+\EE_\mu=\{q:\Ioc(q)>0\}.
+\]
+\end{definition}
+
+\begin{lemma}[Residual cubic equivalence]\label{lem:residual}
+For the exceptional strata above,
+\[
+h^0(X,K_X(-D_q))>0
+\]
+if and only if $q$ admits a residual cubic Abelianization. Equivalently,
+\[
+\EE_\mu=\Rcub_\mu.
+\]
+\end{lemma}
+\begin{proof}
+Suppose first that $0\ne\eta\in H^0(X,K_X(-D_q))$. Then
+\[
+\dv(\eta)=D_q+R
+\]
+for an effective divisor $R$ of degree $g-2$. Define
+\[
+\theta=\frac{\eta^3}{q}.
+\]
+Since $\dv(q)=3D_q-P_q$, we have
+\[
+\dv(\theta)=3(D_q+R)-(3D_q-P_q)=3R+P_q.
+\]
+Thus $\theta$ is holomorphic and $q=\eta^3/\theta$.
+
+Conversely, if $q=\eta^3/\theta$ with $\theta$ holomorphic, then
+\[
+\dv(q)=3\dv(\eta)-\dv(\theta).
+\]
+At every zero of $q$ belonging to $D_q$, the effectivity of $\dv(\theta)$ forces $\eta$ to vanish at least to the
+order prescribed by $D_q$. Hence
+\[
+0\ne\eta\in H^0(X,K_X(-D_q)).
+\]
+The equality $\EE_\mu=\Rcub_\mu$ follows from Theorem \ref{thm:orientation}.
+\end{proof}
+
+\begin{theorem}[Component distinction]\label{thm:component}
+For each exceptional genus-three stratum and for each
+non-hyperelliptic regular/irregular genus-four exceptional stratum,
+\[
+\EE_\mu=\Rcub_\mu=\{q:h^0(X,K_X(-D_q))>0\}.
+\]
+Equivalently, since $\deg D_q=g$,
+\[
+q\in\EE_\mu\quad\Longleftrightarrow\quad h^0(X,\OO_X(D_q))\geq 2.
+\]
+By Chen--M\"oller's theorem \cite[Theorems 6.1 and 7.1]{ChenMoller}, this condition is exactly the traditional
+irregular component condition in genus three and on the non-hyperelliptic regular/irregular part
+in genus four. Its complement is the corresponding regular component.
+\end{theorem}
+\begin{proof}
+The equality
+\[
+\EE_\mu=\{q:h^0(X,K_X(-D_q))>0\}
+\]
+is Theorem \ref{thm:orientation}. The equality with $\Rcub_\mu$ is Lemma \ref{lem:residual}. For the listed exceptional signatures,
+$\deg D_q=g$, so Riemann--Roch gives
+\[
+h^0(X,\OO_X(D_q))-h^0(X,K_X(-D_q))=1.
+\]
+Thus $h^0(X,K_X(-D_q))>0$ is equivalent to $h^0(X,\OO_X(D_q))\geq 2$. Chen--M\"oller prove that this
+Brill--Noether condition distinguishes the exceptional regular and irregular components: in genus
+three this is \cite[Theorem 6.1]{ChenMoller}, and in genus four, on the non-hyperelliptic regular/irregular
+components, this is \cite[Theorem 7.1]{ChenMoller}. Combining their component theorem with the orientation-cover
+and period-obstruction identifications above proves the claim.
+\end{proof}
+
+\begin{remark}
+The component identification in Theorem \ref{thm:component} uses Chen--M\"oller's Brill--Noether
+component theorem as an input. The point of the preceding sections is that the same condition
+is naturally visible on the orientation double cover and through anti-invariant flat periods.
+\end{remark}
+
+\section{Conclusion}
+Theorem \ref{thm:spin} gives the requested section-count interpretation of spin parity. Theorems \ref{thm:orientation}, \ref{thm:obstruction},
+and \ref{thm:component} give the flat-geometric invariant for the exceptional regular/irregular distinction: the invariant
+is $\Ioc$, equivalently the kernel of the anti-invariant period-obstruction map on the orientation
+cover. The final identification with the traditional component names relies on Chen--M\"oller's
+component theorem.
+
+\section*{Acknowledgments}
+Chuyang Chen is grateful to his advisor, Fei Yu, for his guidance on this project.
+
+\section*{Independent review and Lean verification notice}
+\begingroup
+\small\sloppy
+\begin{center}
+\begin{minipage}{0.94\linewidth}
+\centering
+\textbf{\large No independent human mathematical review is recorded.}
+\end{minipage}
+\end{center}
+\par\medskip
+\noindent The accompanying multi-file Lean project compiles under Lean 4.33.1 with Mathlib revision\\
+\texttt{0df444a360eaa60ab8c11dca51a86af692955474}.
+\par\medskip
+\noindent Its status is \textbf{Conditional F1}: internal arguments are formalized relative to explicitly listed
+standard external results and geometric representation interfaces. Concrete compact Riemann surface instances satisfying all those interfaces have not been constructed in the development.
+\par\medskip
+\noindent\textbf{Successful Lean verification establishes correctness of the formalized statement relative to its assumptions. It does not by itself establish exact correspondence between all natural-language claims and their Lean statements.}
+\endgroup
+
+\section*{Provenance, AI use, and contact}
+\begingroup\small\sloppy
+\begin{description}
+\item[Author and project coordinator.] Chuyang Chen. This is his independent project.
+\item[Contact.] \href{mailto:22535018@zju.edu.cn}{22535018@zju.edu.cn}.
+\item[Mathematical manuscript.] The author reports using GPT-5.5 for the original manuscript; a complete prompt log and detailed task allocation are not available.
+\item[Lean code generation.] The multi-file project was developed with AI assistance in Codex, including proof revision, external-input organization, builds, and axiom inspection. Earlier sessions' model versions are not established.
+\item[Build and publication record.] Checks ran in the assisted workflow; Chuyang Chen ran the publication commands. The full build and entry-point audit passed on October 24, 2026. Initial publication commit: \texttt{88c4a1b}.
+\item[Editorial revision.] The supplied manuscript (June 16, 2026) was transcribed into LaTeX using the website's template, with sole-author credit, AI disclosures, and acknowledgments. This is a formatting revision; Lean sources are unchanged.
+\item[Independent human mathematical verification.] None recorded.
+\item[Independent statement-correspondence audit.] None recorded; no F2 status is claimed.
+\end{description}
+\noindent This summary is not a full AI transcript. Corrections and independent checks are welcome via the contact above or the repository issue tracker.
+\endgroup
+
+\section*{Lean formal verification record}
+\begingroup\small\sloppy
+\begin{description}
+\item[Formalization status.] Conditional F1.
+\item[Lean source.] \texttt{notes/chen-yu-problem-3-2/Main.lean}; 32 Lean files in the project.
+\item[Principal formal theorem.] \texttt{Problem32.PaperSynthesis.complete\_component\_criterion}.
+\item[Build commands.] \texttt{lake build}; \texttt{lake env lean Main.lean}.
+\item[Build/kernel result.] PASS in the recorded environment.
+\item[Lean version.] Lean 4.33.1.
+\item[Library snapshot.] Mathlib revision \texttt{0df444a360eaa60ab8c11dca51a86af692955474}.
+\item[Kernel axiom audit.] Final entry-point reports contain only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, with no \texttt{sorryAx}.
+\item[Coverage.] Theorems 2.1, 3.2, 4.1, and 5.3, and Lemma 5.2; the theorem map and detailed coverage are in \texttt{STATUS.md}.
+\item[External inputs and scope.] See \texttt{EXTERNAL\_INPUTS.md}. Geometric interfaces remain inputs; genus four is restricted to the non-hyperelliptic regular/irregular part. Axiom reports do not list theorem parameters.
+\item[Reproduction.] See \texttt{Verify.ps1}, \texttt{VALIDATION.md}, \texttt{verification.log}, and the source hashes and logs under \texttt{logs/current/}.
+\end{description}
+\noindent\textbf{Interpretation of the label.} Conditional F1 records kernel acceptance under the documented assumptions; it does not certify concrete geometric instances or an independent human correspondence audit.
+\endgroup
+
+\begingroup\raggedright
+\begin{thebibliography}{9}
+\bibitem{ChenMoller}
+D.~Chen and M.~M\"oller,
+Quadratic differentials in low genus: exceptional and non-varying strata,
+\emph{Ann. Sci. \'Ec. Norm. Sup\'er.} (4) \textbf{47} (2014), no.~2, 309--369;
+arXiv:1204.1707.
+\bibitem{ChenYu}
+D.~Chen and F.~Yu,
+An algebro-geometric perspective on the topology of moduli spaces of differentials,
+arXiv:2601.13127.
+\bibitem{Lanneau}
+E.~Lanneau,
+Parity of the spin structure defined by a quadratic differential,
+arXiv:math/0210116.
+\end{thebibliography}
+\endgroup
+\end{document}

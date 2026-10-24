@@ -11,3 +11,10 @@ The geometric coordinate interface and external results remain explicit inputs. 
 - [Validation](VALIDATION.md)
 - [Fresh build log](verification.log)
 - [Provenance](PROVENANCE.md)
+## Author and publication edition
+
+Chuyang Chen is the sole author and coordinator. Contact: 22535018@zju.edu.cn.
+
+The paper is typeset using the same LaTeX template as the other website articles, with integrated acknowledgments, AI use (GPT-5.5 for the original manuscript), and Lean verification information. [Editable LaTeX source](paper.tex).
+
+[AI use and acknowledgments](AI_USE.md).
