@@ -1,0 +1,46 @@
+import GeometricAlgebra
+import LocalLaurent
+import PrincipalParts
+import AntiPrincipalParts
+import ResidueMatrix
+import Gluing
+import OverlapObstruction
+import CompactHolomorphic
+import LaurentOverlap
+import CompactBridge
+import ChartCoverAction
+import MixedPrincipalParts
+import LocalPrimitiveGluing
+import ChartDifferential
+import AntiPrimitiveGluing
+import ResidualCubicLocal
+import PaperLinearAssembly
+import PaperOrientationLocal
+import PaperOrientationGlobal
+import PaperSpinLocal
+import PaperSignatureData
+import PaperSpinGlobal
+import PaperPeriodComparison
+import PaperAntiPeriod
+import PaperDifferentialBridge
+import PaperBoundedPrimitive
+import PaperObstructionGlobal
+import PaperResidualGlobal
+import PaperComponentCriterion
+import PaperSynthesis
+
+/-! All proof modules. The Paper* modules formalize the paper's internal
+arguments relative to explicit standard external inputs; see EXTERNAL_INPUTS.md.
+This is not a construction of compact Riemann surfaces from first principles. -/
+#print axioms Problem32.CompactBridge.compactAntiObstructionEquiv
+#print axioms Problem32.ResidueMatrix.residueMap_eq_mulVecLin
+#print axioms Problem32.AntiPrincipalParts.totalRamified_finrank
+#print axioms Problem32.ChartCoverAction.compactAntiObstructionEquiv
+#print axioms Problem32.MixedPrincipalParts.mixed_finrank
+#print axioms Problem32.MixedPrincipalParts.obstruction_rank_nullity
+#print axioms Problem32.LocalPrimitiveGluing.primitive_recovers_principalPart
+#print axioms Problem32.LocalPrimitiveGluing.zero_iff_constant_correction
+#print axioms Problem32.ChartDifferential.anti_primitive
+#print axioms Problem32.AntiPrimitiveGluing.zero_obstruction_iff_anti_primitive
+#print axioms Problem32.ResidualCubicLocal.residual_regular_iff
+#print axioms Problem32.ResidualCubicLocal.residual_compatible

@@ -1,0 +1,21 @@
+warning: mathlib: repository 'D:\Projects\PaperFormalization\.lake/packages\mathlib' has local changes
+warning: plausible: repository 'D:\Projects\PaperFormalization\.lake/packages\plausible' has local changes
+warning: LeanSearchClient: repository 'D:\Projects\PaperFormalization\.lake/packages\LeanSearchClient' has local changes
+warning: importGraph: repository 'D:\Projects\PaperFormalization\.lake/packages\importGraph' has local changes
+warning: proofwidgets: repository 'D:\Projects\PaperFormalization\.lake/packages\proofwidgets' has local changes
+warning: aesop: repository 'D:\Projects\PaperFormalization\.lake/packages\aesop' has local changes
+warning: Qq: repository 'D:\Projects\PaperFormalization\.lake/packages\Qq' has local changes
+warning: batteries: repository 'D:\Projects\PaperFormalization\.lake/packages\batteries' has local changes
+warning: Cli: repository 'D:\Projects\PaperFormalization\.lake/packages\Cli' has local changes
+C:/Users/陈初阳/Documents/Codex/2026-10-21/w/outputs/Problem32/LocalLaurent.lean:153:51: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Problem32.LocalLaurent.boundedDoubleShiftEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.ramifiedQuotient_anti' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.boundedShiftEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.ramifiedQuotient_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.simplePoleSectionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.spinInvariantFourRPlusOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.spinAntiFourRPlusThree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.derivativeEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalLaurent.exists_primitive_iff_residue_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

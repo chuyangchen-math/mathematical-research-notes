@@ -1,0 +1,5 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperComponentCriterion.lean:55:31: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Problem32.PaperComponentCriterion.positive_iff_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperComponentCriterion.theorem_5_3' depends on axioms: [propext, Classical.choice, Quot.sound]

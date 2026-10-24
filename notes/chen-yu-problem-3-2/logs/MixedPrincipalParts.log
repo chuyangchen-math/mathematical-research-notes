@@ -1,0 +1,37 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\MixedPrincipalParts.lean:29:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\MixedPrincipalParts.lean:31:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\MixedPrincipalParts.lean:37:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\MixedPrincipalParts.lean:39:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\MixedPrincipalParts.lean:45:0: warning: Definition `obstruction_rank_nullity` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'Problem32.MixedPrincipalParts.mixed_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.MixedPrincipalParts.obstruction_rank_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,1 @@
+'Problem32.CompactBridge.compactAntiObstructionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]

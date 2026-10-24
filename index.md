@@ -1,4 +1,4 @@
-﻿# Machine-Assisted Mathematical Research Notes
+# Machine-Assisted Mathematical Research Notes
 
 This repository contains AI-assisted mathematical research notes and companion Lean formalizations for selected problems from the Scottish Book.
 
@@ -72,3 +72,8 @@ Files:
 - [Verification records](PaperFormalization/Mcmullen313_GitHub/Logs/)
 - [Formalization status](PaperFormalization/Mcmullen313_GitHub/Partial/STATUS.md)
 
+
+
+## Chen–Yu Problem 3.2 — Quadratic differential strata
+
+[Paper and Lean development](notes/chen-yu-problem-3-2/index.md). Conditional F1: internal proofs with explicit standard external inputs. See the theorem map, input registry, and verification record. No independent human review is recorded.

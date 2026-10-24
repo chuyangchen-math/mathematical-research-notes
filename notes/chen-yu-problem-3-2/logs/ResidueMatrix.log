@@ -1,0 +1,2 @@
+'Problem32.ResidueMatrix.residueMap_eq_mulVecLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ResidueMatrix.residueMap_rank_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]

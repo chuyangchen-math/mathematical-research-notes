@@ -1,0 +1,4 @@
+'Problem32.GeometricAlgebra.divideByAntiEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.GeometricAlgebra.involutionDecomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.GeometricAlgebra.antiKernelEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.GeometricAlgebra.rank_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]

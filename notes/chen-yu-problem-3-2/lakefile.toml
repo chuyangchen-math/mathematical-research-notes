@@ -1,0 +1,13 @@
+name = "Problem32Foundations"
+version = "0.2.0"
+defaultTargets = ["Problem32"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
+
+[[lean_lib]]
+name = "Problem32"
+roots = ["All", "AntiPrimitiveGluing", "AntiPrincipalParts", "ChartCoverAction", "ChartDifferential", "CompactBridge", "CompactHolomorphic", "GeometricAlgebra", "Gluing", "LaurentOverlap", "LocalLaurent", "LocalPrimitiveGluing", "Main", "MixedPrincipalParts", "OverlapObstruction", "PaperAntiPeriod", "PaperBoundedPrimitive", "PaperComponentCriterion", "PaperDifferentialBridge", "PaperLinearAssembly", "PaperObstructionGlobal", "PaperOrientationGlobal", "PaperOrientationLocal", "PaperPeriodComparison", "PaperResidualGlobal", "PaperSignatureData", "PaperSpinGlobal", "PaperSpinLocal", "PaperSynthesis", "PrincipalParts", "ResidualCubicLocal", "ResidueMatrix"]
+

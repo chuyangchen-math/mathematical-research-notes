@@ -1,0 +1,14 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSignatureData.lean:16:66: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSignatureData.lean:16:66: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSignatureData.lean:21:32: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'Problem32.PaperSignatureData.lemma_3_1' depends on axioms: [propext]
+'Problem32.PaperSignatureData.classify_spin_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSignatureData.half_omega_order' depends on axioms: [propext]
+'Problem32.PaperSignatureData.spin_degree_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSignatureData.degree_equals_genus' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,9 @@
+'Problem32.PaperDifferentialBridge.differentiated_principal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperDifferentialBridge.primitive_bound_from_principal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperDifferentialBridge.anti_cycles_determine_periods' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

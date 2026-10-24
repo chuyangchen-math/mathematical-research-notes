@@ -1,0 +1,37 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:84:70: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:84:54: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:86:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:86:50: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:86:62: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:89:58: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:89:70: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:84:70: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:129:59: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:129:43: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperSpinLocal.lean:129:59: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Problem32.PaperSpinLocal.contribution_floor' depends on axioms: [propext, Quot.sound]
+'Problem32.PaperSpinLocal.plus_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSpinLocal.minus_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSpinLocal.germ_minus' depends on axioms: [propext, Classical.choice, Quot.sound]

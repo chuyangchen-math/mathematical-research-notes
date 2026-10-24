@@ -1,0 +1,15 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationGlobal.lean:21:14: warning: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationGlobal.lean:45:12: warning: Variable name `i` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _i
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Problem32.PaperOrientationGlobal.quotient_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperOrientationGlobal.theorem_3_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperOrientationGlobal.orientation_dimension' depends on axioms: [propext, Classical.choice, Quot.sound]

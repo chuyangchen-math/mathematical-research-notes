@@ -1,0 +1,5 @@
+'Problem32.ChartDifferential.derivative_deck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartDifferential.primitive_neg_deck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartDifferential.formAction_twice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartDifferential.anti_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartDifferential.anti_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]

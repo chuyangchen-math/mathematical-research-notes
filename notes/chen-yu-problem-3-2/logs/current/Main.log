@@ -1,0 +1,23 @@
+'Problem32.PaperSpinGlobal.spinSectionDecomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSpinGlobal.theorem_2_1_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSignatureData.classify_spin_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSignatureData.lemma_3_1' depends on axioms: [propext]
+'Problem32.PaperOrientationGlobal.theorem_3_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperObstructionGlobal.theorem_4_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperObstructionGlobal.orientation_obstruction_criterion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperPeriodComparison.period_class_independent_of_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperAntiPeriod.anti_period_kernel_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperDifferentialBridge.differentiated_principal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperDifferentialBridge.anti_cycles_determine_periods' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperBoundedPrimitive.bounded_exactness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperResidualGlobal.lemma_5_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperComponentCriterion.theorem_5_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperSynthesis.complete_component_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]

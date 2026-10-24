@@ -1,0 +1,6 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperResidualGlobal.lean:105:6: warning: Unused tactic linter: `change 0 ≤ tensorDivisor A K 1 (eta ^ 3 / q) x` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Problem32.PaperResidualGlobal.cubic_tensor_divisor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperResidualGlobal.bound_of_holomorphic_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperResidualGlobal.lemma_5_2' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,40 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:57:10: warning: This simp argument is unused:
+  coeff_mul_single
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [coeff_smul, smul_eq_mul, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:52:59: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:52:43: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:52:59: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:72:70: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:72:54: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:74:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:74:37: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:77:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:77:37: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperOrientationLocal.lean:72:70: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'Problem32.PaperOrientationLocal.quotient_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperOrientationLocal.quotient_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperOrientationLocal.germ_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,6 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\PaperAntiPeriod.lean:53:0: warning: Definition `anti_period_kernel_eq` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'Problem32.PaperAntiPeriod.anti_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperAntiPeriod.anti_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperAntiPeriod.anti_period_kernel_eq' depends on axioms: [propext, Classical.choice, Quot.sound]

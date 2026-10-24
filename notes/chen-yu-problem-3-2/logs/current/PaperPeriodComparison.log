@@ -1,0 +1,7 @@
+'Problem32.PaperPeriodComparison.period_kernel_eq_mittag_leffler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.PaperPeriodComparison.restricted_period_kernel_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.PaperPeriodComparison.period_class_independent_of_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

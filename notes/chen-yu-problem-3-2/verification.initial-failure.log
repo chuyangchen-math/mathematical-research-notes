@@ -1,0 +1,205 @@
+Build date: 2026-10-24T13:24:52.6868407+08:00
+Exit code: 1
+ℹ [8706/8738] Built CompactHolomorphic (44s)
+info: CompactHolomorphic.lean:55:0: 'Problem32.CompactHolomorphic.anti_holomorphic_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CompactHolomorphic.lean:56:0: 'Problem32.CompactHolomorphic.kernel_fixed_of_holomorphic' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8707/8738] Built PaperResidualGlobal (96s)
+warning: PaperResidualGlobal.lean:105:6: Unused tactic linter: `change 0 ≤ tensorDivisor A K 1 (eta ^ 3 / q) x` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: PaperResidualGlobal.lean:121:0: 'Problem32.PaperResidualGlobal.cubic_tensor_divisor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperResidualGlobal.lean:122:0: 'Problem32.PaperResidualGlobal.bound_of_holomorphic_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperResidualGlobal.lean:123:0: 'Problem32.PaperResidualGlobal.lemma_5_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8708/8738] Built Gluing (96s)
+warning: Gluing.lean:76:18: Unused tactic linter: `intros` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: Gluing.lean:117:0: 'Problem32.Gluing.functionGluingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Gluing.lean:118:0: 'Problem32.Gluing.compatibleSectionsEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8709/8738] Built LocalLaurent (96s)
+warning: LocalLaurent.lean:153:51: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: LocalLaurent.lean:456:0: 'Problem32.LocalLaurent.boundedDoubleShiftEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:457:0: 'Problem32.LocalLaurent.ramifiedQuotient_anti' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:458:0: 'Problem32.LocalLaurent.boundedShiftEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:459:0: 'Problem32.LocalLaurent.ramifiedQuotient_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:460:0: 'Problem32.LocalLaurent.simplePoleSectionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:461:0: 'Problem32.LocalLaurent.spinInvariantFourRPlusOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:462:0: 'Problem32.LocalLaurent.spinAntiFourRPlusThree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:463:0: 'Problem32.LocalLaurent.derivativeEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalLaurent.lean:464:0: 'Problem32.LocalLaurent.exists_primitive_iff_residue_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8710/8738] Built GeometricAlgebra (100s)
+info: GeometricAlgebra.lean:292:0: 'Problem32.GeometricAlgebra.divideByAntiEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GeometricAlgebra.lean:293:0: 'Problem32.GeometricAlgebra.involutionDecomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GeometricAlgebra.lean:294:0: 'Problem32.GeometricAlgebra.antiKernelEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GeometricAlgebra.lean:295:0: 'Problem32.GeometricAlgebra.rank_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8711/8738] Building PaperLinearAssembly (17s)
+trace: .> LEAN_PATH=C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean c:\Users\Public\Lean\elan\toolchains\leanprover--lean4---v4.33.1\bin\lean.exe C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\PaperLinearAssembly.lean -o C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperLinearAssembly.olean -i C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperLinearAssembly.ilean -c C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperLinearAssembly.c --setup C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperLinearAssembly.setup.json --json
+error: PaperLinearAssembly.lean:1:0: failed to read file 'C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\Analysis\Complex\Poisson.olean.private'
+error: Lean exited with code 1
+ℹ [8712/8738] Built ResidualCubicLocal (72s)
+info: ResidualCubicLocal.lean:89:0: 'Problem32.ResidualCubicLocal.bounded_iff_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ResidualCubicLocal.lean:90:0: 'Problem32.ResidualCubicLocal.residual_regular_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ResidualCubicLocal.lean:91:0: 'Problem32.ResidualCubicLocal.recover_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ResidualCubicLocal.lean:92:0: 'Problem32.ResidualCubicLocal.residual_coordinate_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ResidualCubicLocal.lean:93:0: 'Problem32.ResidualCubicLocal.effective_residual_order' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ResidualCubicLocal.lean:94:0: 'Problem32.ResidualCubicLocal.residual_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8713/8738] Built PaperOrientationLocal (72s)
+warning: PaperOrientationLocal.lean:57:10: This simp argument is unused:
+  coeff_mul_single
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [coeff_smul, smul_eq_mul, mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: PaperOrientationLocal.lean:52:59: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PaperOrientationLocal.lean:52:43: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:52:59: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PaperOrientationLocal.lean:72:70: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PaperOrientationLocal.lean:72:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:74:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:74:37: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:77:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:77:37: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperOrientationLocal.lean:72:70: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: PaperOrientationLocal.lean:103:0: 'Problem32.PaperOrientationLocal.quotient_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperOrientationLocal.lean:104:0: 'Problem32.PaperOrientationLocal.quotient_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperOrientationLocal.lean:105:0: 'Problem32.PaperOrientationLocal.germ_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8714/8738] Built PrincipalParts (72s)
+info: PrincipalParts.lean:196:0: 'Problem32.PrincipalParts.quotientEquivPrincipalParts' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrincipalParts.lean:197:0: 'Problem32.PrincipalParts.principalPart_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrincipalParts.lean:198:0: 'Problem32.PrincipalParts.principalPart_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrincipalParts.lean:199:0: 'Problem32.PrincipalParts.finitePartsEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrincipalParts.lean:200:0: 'Problem32.PrincipalParts.finiteParts_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8715/8738] Built PaperSpinLocal (72s)
+warning: PaperSpinLocal.lean:84:70: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PaperSpinLocal.lean:84:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:86:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:86:50: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:86:62: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:89:58: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:89:70: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:84:70: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: PaperSpinLocal.lean:129:59: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: PaperSpinLocal.lean:129:43: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: PaperSpinLocal.lean:129:59: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: PaperSpinLocal.lean:146:0: 'Problem32.PaperSpinLocal.contribution_floor' depends on axioms: [propext, Quot.sound]
+info: PaperSpinLocal.lean:147:0: 'Problem32.PaperSpinLocal.plus_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperSpinLocal.lean:148:0: 'Problem32.PaperSpinLocal.minus_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperSpinLocal.lean:149:0: 'Problem32.PaperSpinLocal.germ_minus' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8716/8738] Built OverlapObstruction (73s)
+info: OverlapObstruction.lean:126:0: 'Problem32.OverlapObstruction.overlapDifference_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OverlapObstruction.lean:127:0: 'Problem32.OverlapObstruction.obstruction_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OverlapObstruction.lean:128:0: 'Problem32.OverlapObstruction.obstruction_independent_of_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8717/8738] Building PaperOrientationGlobal (19s)
+trace: .> LEAN_PATH=C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean c:\Users\Public\Lean\elan\toolchains\leanprover--lean4---v4.33.1\bin\lean.exe C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\PaperOrientationGlobal.lean -o C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperOrientationGlobal.olean -i C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperOrientationGlobal.ilean -c C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperOrientationGlobal.c --setup C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperOrientationGlobal.setup.json --json
+error: PaperOrientationGlobal.lean:1:0: failed to read file 'C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\Tactic\ComputeAsymptotics\Multiseries\Defs.olean.private'
+error: Lean exited with code 1
+✖ [8718/8738] Building AntiPrincipalParts (19s)
+trace: .> LEAN_PATH=C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean c:\Users\Public\Lean\elan\toolchains\leanprover--lean4---v4.33.1\bin\lean.exe C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\AntiPrincipalParts.lean -o C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\AntiPrincipalParts.olean -i C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\AntiPrincipalParts.ilean -c C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\AntiPrincipalParts.c --setup C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\AntiPrincipalParts.setup.json --json
+error: AntiPrincipalParts.lean:1:0: failed to read file 'C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\Tactic\ComputeAsymptotics\Multiseries\Defs.olean.private'
+error: Lean exited with code 1
+✖ [8721/8738] Building PaperSignatureData (19s)
+trace: .> LEAN_PATH=C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean c:\Users\Public\Lean\elan\toolchains\leanprover--lean4---v4.33.1\bin\lean.exe C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\PaperSignatureData.lean -o C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperSignatureData.olean -i C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\PaperSignatureData.ilean -c C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperSignatureData.c --setup C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\PaperSignatureData.setup.json --json
+error: PaperSignatureData.lean:1:0: failed to read file 'C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\Tactic\ComputeAsymptotics\Multiseries\Defs.olean.private'
+error: Lean exited with code 1
+✖ [8723/8738] Building LaurentOverlap (44s)
+trace: .> LEAN_PATH=C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean c:\Users\Public\Lean\elan\toolchains\leanprover--lean4---v4.33.1\bin\lean.exe C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\LaurentOverlap.lean -o C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\LaurentOverlap.olean -i C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\lib\lean\LaurentOverlap.ilean -c C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\LaurentOverlap.c --setup C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\build\ir\LaurentOverlap.setup.json --json
+error: LaurentOverlap.lean:1:0: failed to read file 'C:\Users\陈初阳\Documents\problem32-publish-20261024-131208\notes\chen-yu-problem-3-2\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\Order\Sublocale.olean.private'
+error: Lean exited with code 1
+ℹ [8728/8738] Built PaperPeriodComparison (45s)
+info: PaperPeriodComparison.lean:83:0: 'Problem32.PaperPeriodComparison.period_kernel_eq_mittag_leffler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: PaperPeriodComparison.lean:84:0: 'Problem32.PaperPeriodComparison.restricted_period_kernel_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperPeriodComparison.lean:85:0: 'Problem32.PaperPeriodComparison.period_class_independent_of_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8731/8738] Built LocalPrimitiveGluing (47s)
+warning: LocalPrimitiveGluing.lean:90:0: Definition `primitiveObstruction_zero_iff` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+warning: LocalPrimitiveGluing.lean:98:0: Definition `primitiveObstruction_kernel` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+info: LocalPrimitiveGluing.lean:134:0: 'Problem32.LocalPrimitiveGluing.derivative_zero_iff_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalPrimitiveGluing.lean:135:0: 'Problem32.LocalPrimitiveGluing.primitive_recovers_principalPart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: LocalPrimitiveGluing.lean:136:0: 'Problem32.LocalPrimitiveGluing.differential_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalPrimitiveGluing.lean:137:0: 'Problem32.LocalPrimitiveGluing.primitiveObstruction_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: LocalPrimitiveGluing.lean:138:0: 'Problem32.LocalPrimitiveGluing.primitiveObstruction_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LocalPrimitiveGluing.lean:139:0: 'Problem32.LocalPrimitiveGluing.zero_iff_constant_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8733/8738] Built PaperAntiPeriod (34s)
+warning: PaperAntiPeriod.lean:53:0: Definition `anti_period_kernel_eq` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+info: PaperAntiPeriod.lean:75:0: 'Problem32.PaperAntiPeriod.anti_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperAntiPeriod.lean:76:0: 'Problem32.PaperAntiPeriod.anti_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperAntiPeriod.lean:77:0: 'Problem32.PaperAntiPeriod.anti_period_kernel_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8734/8738] Built PaperDifferentialBridge (33s)
+info: PaperDifferentialBridge.lean:74:0: 'Problem32.PaperDifferentialBridge.differentiated_principal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: PaperDifferentialBridge.lean:75:0: 'Problem32.PaperDifferentialBridge.primitive_bound_from_principal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: PaperDifferentialBridge.lean:76:0: 'Problem32.PaperDifferentialBridge.anti_cycles_determine_periods' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8735/8738] Built PaperBoundedPrimitive (20s)
+info: PaperBoundedPrimitive.lean:46:0: 'Problem32.PaperBoundedPrimitive.bounded_exactness' depends on axioms: [propext, Classical.choice, Quot.sound]
+Some required targets logged failures:
+- PaperLinearAssembly
+- PaperOrientationGlobal
+- AntiPrincipalParts
+- PaperSignatureData
+- LaurentOverlap
+error: build failed

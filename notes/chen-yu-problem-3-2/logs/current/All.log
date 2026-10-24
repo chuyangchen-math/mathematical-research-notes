@@ -1,0 +1,16 @@
+'Problem32.CompactBridge.compactAntiObstructionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ResidueMatrix.residueMap_eq_mulVecLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.AntiPrincipalParts.totalRamified_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartCoverAction.compactAntiObstructionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.MixedPrincipalParts.mixed_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.MixedPrincipalParts.obstruction_rank_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalPrimitiveGluing.primitive_recovers_principalPart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.LocalPrimitiveGluing.zero_iff_constant_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ChartDifferential.anti_primitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.AntiPrimitiveGluing.zero_obstruction_iff_anti_primitive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.ResidualCubicLocal.residual_regular_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.ResidualCubicLocal.residual_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]

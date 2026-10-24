@@ -1,0 +1,30 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LaurentOverlap.lean:30:11: warning: Variable name `p` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _p
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LaurentOverlap.lean:30:13: warning: Variable name `q` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _q
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LaurentOverlap.lean:31:12: warning: Variable name `c` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _c
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LaurentOverlap.lean:31:14: warning: Variable name `p` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _p
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LaurentOverlap.lean:72:0: warning: Definition `laurentObstruction_kernel` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'Problem32.LaurentOverlap.familyLift_rightInverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LaurentOverlap.laurentObstruction_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LaurentOverlap.antiLaurentObstructionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]

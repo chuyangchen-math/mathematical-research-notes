@@ -1,4 +1,4 @@
-﻿# Mathematical Research Notes
+# Mathematical Research Notes
 
 This repository contains formalized mathematical research notes, Lean 4 developments, and verification records.
 
@@ -51,3 +51,8 @@ For McMullen Question 3.13:
 ## Scope
 
 The McMullen 3.13 repository provides a verified Lean framework for the formalized core. It does not claim that all geometric inputs have already been formalized inside Lean.
+
+
+## Chen–Yu Problem 3.2 — Quadratic differential strata
+
+[Paper and Lean development](notes/chen-yu-problem-3-2/index.md). Conditional F1: internal proofs with explicit standard external inputs. See the theorem map, input registry, and verification record. No independent human review is recorded.

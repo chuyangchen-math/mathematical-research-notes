@@ -1,0 +1,2 @@
+'Problem32.CompactHolomorphic.anti_holomorphic_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.CompactHolomorphic.kernel_fixed_of_holomorphic' depends on axioms: [propext, Classical.choice, Quot.sound]

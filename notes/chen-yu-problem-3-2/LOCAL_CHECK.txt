@@ -1,0 +1,6 @@
+Lean: 4.33.1
+Mathlib manifest revision: 0df444a360eaa60ab8c11dca51a86af692955474
+Compiler exit code: 0
+Source SHA256: 73DDAA66BBBABCB120E4219BF58E2120181870CAC566CFA1025AA2664D6A5533
+Environment: existing D:\Projects\PaperFormalization project; dependency local-change warnings retained in log.
+Full-paper status: PARTIAL

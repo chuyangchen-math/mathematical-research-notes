@@ -1,0 +1,16 @@
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LocalPrimitiveGluing.lean:90:0: warning: Definition `primitiveObstruction_zero_iff` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+C:\Users\陈初阳\Documents\Codex\2026-10-21\w\outputs\Problem32\LocalPrimitiveGluing.lean:98:0: warning: Definition `primitiveObstruction_kernel` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'Problem32.LocalPrimitiveGluing.derivative_zero_iff_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalPrimitiveGluing.primitive_recovers_principalPart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.LocalPrimitiveGluing.differential_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalPrimitiveGluing.primitiveObstruction_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem32.LocalPrimitiveGluing.primitiveObstruction_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem32.LocalPrimitiveGluing.zero_iff_constant_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
