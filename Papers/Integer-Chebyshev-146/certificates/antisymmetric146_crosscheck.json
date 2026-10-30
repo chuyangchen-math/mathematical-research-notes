@@ -1,0 +1,27 @@
+{
+  "method": "Exact rational ellipsoid enumeration without early point-constraint pruning; integer point tests at every ellipsoid leaf.",
+  "nodes": 111365,
+  "ellipsoid_integer_points": 22551,
+  "survivors": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "matches_pruned_search": true,
+  "elapsed_seconds": 6.623213768005371
+}

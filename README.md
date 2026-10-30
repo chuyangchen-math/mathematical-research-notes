@@ -56,3 +56,14 @@ The McMullen 3.13 repository provides a verified Lean framework for the formaliz
 ## Chen–Yu Problem 3.2 — Quadratic differential strata
 
 [Paper and Lean development](notes/chen-yu-problem-3-2/index.md). Conditional F1: internal proofs with explicit standard external inputs. See the theorem map, input registry, and verification record. No independent human review is recorded.
+
+## Integer Chebyshev Manuscripts
+
+### Degree-146 Integer Chebyshev Extremal Polynomial
+
+- [English paper (PDF)](Papers/Integer-Chebyshev-146/chebyshev146-en.pdf)
+- [LaTeX source](Papers/Integer-Chebyshev-146/main.tex)
+- [Exact certificates and verification scripts](Papers/Integer-Chebyshev-146/certificates/)
+- [Independent review instructions](Papers/Integer-Chebyshev-146/REVIEW_INSTRUCTIONS.md)
+
+Status: Research manuscript for independent review. No external peer-review result is claimed.

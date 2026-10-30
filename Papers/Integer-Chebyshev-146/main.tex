@@ -1,0 +1,383 @@
+% Compile twice with XeLaTeX or pdfLaTeX.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{certificate}[theorem]{Computational certificate}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\file}[1]{{\small\nolinkurl{#1}}}
+\Urlmuskip=0mu plus 1mu
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[1]
+\title{A Computer-Assisted Optimality Proof for the\protect\\ Integer Chebyshev Problem in Degree 146}
+\author{Research manuscript for independent review}
+\date{English edition: October 30, 2026\\Certificate version v2, verified locally on October 25, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We consider the minimum uniform norm on $[0,1]$ among nonzero integer polynomials of degree at most 146. We give an explicit minimizing polynomial and an exact real-algebraic description of its norm, supported by finite certificates checked using exact arithmetic. Markov's inequality, integer resultants, and 35 rational interpolation steps force a factor of degree 114. A 16-dimensional integer enumeration then excludes every nonzero antisymmetric remainder, without invoking optimality in degree 145. A subsequent 17-dimensional enumeration leaves only two pairs of nonzero candidates. Real-root isolation and rational interval evaluation distinguish their norms and establish uniqueness up to sign. Both enumerations have also been rerun without early point-constraint pruning. The manuscript and accompanying certificates have passed local verification but remain subject to external independent review; no priority claim is made.
+\end{abstract}
+\noindent\textbf{Keywords:} integer Chebyshev polynomials; uniform norm; resultants; exact enumeration; computer-assisted proof.
+
+\section{Problem and main result}
+For a real polynomial $p$ on a compact interval $I$, write
+\[
+\norm p_I=\max_{x\in I}|p(x)|,\qquad
+m_n=\min_{\substack{0\ne p\in\Z[x]\\\deg p\le n}}\norm p_{[0,1]}.
+\]
+The restriction to integer coefficients is essential. With unrestricted real coefficients and no normalization, one can scale a nonzero polynomial arbitrarily close to zero. Integer coefficients prevent this continuous scaling and produce a discrete global optimization problem.
+
+Meichsner's computational study~\cite{meichsner} and the work of Hare and Hodges~\cite{hare} provide the background and factor-selection framework. The latter paper reports 16 additional degrees, with 146 absent from that list. We do not infer from this historical observation that no later solution exists. Our argument assumes no finite-degree optimality theorem from either source, and every factor used below is specified explicitly.
+
+Put $t=x(1-x)$ and define
+\begin{align*}
+g(t)&=29t^2-11t+1,\\
+a(t)&=941t^4-703t^3+193t^2-23t+1,\\
+b(t)&=-4921t^5+4594t^4-1697t^3+310t^2-28t+1,\\
+Q_*(t)&=t^{46}(1-4t)^8(1-5t)^6g(t)^2a(t)b(t),\\
+P_*(x)&=Q_*(x(1-x)).
+\end{align*}
+Thus $Q_*$ has degree 73 and $P_*$ is an integer polynomial of degree 146.
+
+\begin{theorem}[Main conclusion supported by the accompanying certificates]\label{thm:main}
+The minimum is $m_{146}=\norm{P_*}_{[0,1]}$, and its only minimizers are $P_*$ and $-P_*$. Numerically,
+\[
+m_{146}\approx8.31346358662477797985373396968\times10^{-55}.
+\]
+With the exact rational numbers
+\begin{align*}
+L_*&=8.3134635866247779798537339\times10^{-55},\\
+U_*&=8.3134635866247779798537340\times10^{-55},
+\end{align*}
+we have $L_*<m_{146}<U_*$. An exact real-algebraic specification is given in Section~\ref{sec:norm}.
+\end{theorem}
+
+\paragraph{Status of the proof.}
+General mathematical arguments are separated below from finite computations supplied as machine-readable certificates. The latter are integral parts of the proof and cannot be replaced by execution statistics alone. This is a locally checked computer-assisted argument, not a theorem certified by a formal proof-assistant kernel. Independent review must still examine the mathematical model, its implementation, and the shared software dependencies.
+
+\section{An upper bound and forced factors}
+Fix the exact rational threshold
+\begin{equation}\label{eq:U}
+U=8.39524760655209405080\times10^{-55}.
+\end{equation}
+For the initial upper bound, define
+\begin{align*}
+c(t)&=-169t^3+94t^2-17t+1,\\
+d(t)&=961t^4-712t^3+194t^2-23t+1,\\
+Q_A(t)&=t^{46}(1-4t)^8(1-5t)^6g(t)^3c(t)d(t).
+\end{align*}
+The initial norm certificate establishes $\norm{Q_A}_{[0,1/4]}<U$. Since $x\mapsto x(1-x)$ maps $[0,1]$ onto $[0,1/4]$, this is also the norm of $Q_A(x(1-x))$. It therefore suffices to classify every nonzero integer polynomial of degree at most 146 and norm at most $U$.
+
+\subsection{Markov bounds and integer resultants}
+For $n=146$, set
+\[
+C_0=1,\qquad C_k=C_{k-1}\frac{2(n^2-(k-1)^2)}{k(2k-1)}\quad(1\le k\le n).
+\]
+The Markov brothers' inequality on $[-1,1]$, rescaled to $[0,1]$, gives
+\begin{equation}\label{eq:markov}
+\left\lVert\frac{p^{(k)}}{k!}\right\rVert_{[0,1]}\le UC_k.
+\end{equation}
+Moreover, $p^{(k)}/k!$ has integer coefficients.
+
+\begin{lemma}\label{lem:resultant}
+Let $h\in\Z[x]$ be primitive and irreducible, of degree $s$, with leading coefficient of absolute value $a\ge1$. Suppose all its roots $\beta_1,\ldots,\beta_s$ lie in $[0,1]$. If $v\in\Z[x]$, $\deg v\le d$, and
+\[
+a^d\prod_{j=1}^s|v(\beta_j)|<1,
+\]
+then $h\mid v$ in $\Z[x]$. The conclusion also holds if $v=0$.
+\end{lemma}
+\begin{proof}
+For $v\ne0$, the integer resultant satisfies
+\[
+|\Res(h,v)|=a^{\deg v}\prod_{j=1}^s|v(\beta_j)|<1.
+\]
+It must therefore vanish. Irreducibility implies divisibility in $\Q[x]$, and primitivity together with Gauss's lemma gives an integer quotient.
+\end{proof}
+
+In particular, if for $k=0,\ldots,e-1$ we have
+\begin{equation}\label{eq:initial}
+a^{146-k}(UC_k)^s<1,
+\end{equation}
+then $h$ divides each $p^{(k)}$. In characteristic zero the roots of $h$ are simple, so each is a root of $p$ of multiplicity at least $e$. Hence $h^e\mid p$.
+
+Apply these tests to the following factors, in the order displayed:
+\begin{gather*}
+x,\quad x-1,\quad 2x-1,\quad 5x^2-5x+1,\\
+29x^4-58x^3+40x^2-11x+1.
+\end{gather*}
+The initial forced exponents are $(23,23,3,1,1)$. The verifier checks primitivity, irreducibility, root locations, and each strict rational inequality in~\eqref{eq:initial}.
+
+\subsection{Increasing multiplicities by rational interpolation}
+Suppose that $p=F_0q$ has already been established, with $q\in\Z[x]$ and $\deg q\le d$. Choose $d+1$ distinct rational nodes $r_i\in[0,1]$ with $F_0(r_i)\ne0$. Lagrange interpolation yields
+\begin{equation}\label{eq:interpolation}
+|q(z)|\le U\sum_i\frac{|L_i(z)|}{|F_0(r_i)|},\qquad
+L_i(z)=\prod_{j\ne i}\frac{z-r_j}{r_i-r_j}.
+\end{equation}
+For a root $z$ of a target factor isolated in a rational interval $[u,v]$, each numerator can be bounded by
+\[
+|z-r_j|\le\max\{|u-r_j|,|v-r_j|\}.
+\]
+Thus the right-hand side admits a fully rational upper bound. Multiplying the bounds over all roots of the target factor and applying Lemma~\ref{lem:resultant} forces one additional copy of that factor whenever the resulting resultant bound is strictly less than one.
+
+Reflection improves these universal bounds without presupposing that $p$ is symmetric. If $F_0(1-x)=\pm F_0(x)$, then $q(1-x)$ satisfies the same weighted norm bound as any admissible $q$. For paired roots $\beta$ and $1-\beta$, one may therefore use the smaller of the two universal interpolation bounds. Conclusions about endpoint factors may similarly be reflected. The certificate checks the required hypotheses at every such step.
+
+\begin{certificate}[Forced factors]\label{cert:factor}
+The 35 interpolation steps in \file{candidate146_certificate.json} raise the exponent vector to $(44,44,14,4,1)$. Consequently, every nonzero $p\in\Z[x]$ with $\deg p\le146$ and $\norm p_{[0,1]}\le U$ has the form $p=Fq$, where
+\begin{align}
+F(x)={}&x^{44}(x-1)^{44}(2x-1)^{14}(5x^2-5x+1)^4\notag\\
+&\cdot(29x^4-58x^3+40x^2-11x+1),\label{eq:F}
+\end{align}
+and $q\in\Z[x]$ has degree at most 32.
+\end{certificate}
+The computation is checked by \file{verify146.py}. The factor $F$ is primitive and has degree 114, which justifies both the integer quotient and its degree bound. Numerical optimization used to propose interpolation nodes is not part of the validity test.
+
+Define
+\begin{equation}\label{eq:W}
+W(t)=t^{44}(1-4t)^7(1-5t)^4g(t).
+\end{equation}
+Direct substitution gives $F(x)=W(x(1-x))$ and hence $F(1-x)=F(x)$.
+
+\section{A common framework for exact finite exclusion}\label{sec:method}
+We next describe the necessary conditions used in both integer searches. Their construction ensures that no feasible polynomial is excluded by the reduction.
+
+\subsection{Unimodular coordinates and a necessary ellipsoid}
+Consider integer polynomials $R$ of degree at most $N-1$. Let $T$ be an integer matrix whose determinant is verified to have absolute value one. Set
+\[
+b_i(t)=\sum_{j=0}^{N-1}T_{ij}t^j,\qquad
+R(t)=\sum_{i=0}^{N-1}z_i b_i(t),\quad z\in\Z^N.
+\]
+Unimodularity makes this a bijective parametrization of all integer polynomials under consideration. Rational evaluation of the weighted polynomial, divided by its allowed norm, gives vectors $a_r\in\Q^N$. Every feasible vector must satisfy $|a_r^{\mathsf T}z|\le1$ at each selected point.
+
+For positive integer weights $w_r$, define
+\[
+G=\frac{\sum_r w_ra_ra_r^{\mathsf T}}{\sum_r w_r}.
+\]
+Then $z^{\mathsf T}Gz\le1$. The certificate supplies a symmetric rational matrix $J$ with denominator $2^{36}$. The verifier checks that $J$ is positive definite and that $E=G-J$ satisfies
+\[
+E_{ii}\ge\sum_{j\ne i}|E_{ij}|.
+\]
+This symmetric diagonally dominant matrix is positive semidefinite. Thus every feasible integer vector belongs to the ellipsoid
+\begin{equation}\label{eq:ellipsoid}
+z^{\mathsf T}Jz\le1.
+\end{equation}
+Cauchy--Schwarz in the inner product induced by $J$ also gives the coordinate bounds
+\begin{equation}\label{eq:coordinates}
+|z_i|\le Z_i:=\left\lfloor\sqrt{(J^{-1})_{ii}}\right\rfloor.
+\end{equation}
+Matrix inversion and rounding are performed using exact rational arithmetic and integer square roots.
+
+\subsection{Rounded point constraints and certified pruning}
+Let $C=2^{32}$. Each additional point constraint stores an integer row vector $v$. The verifier checks
+\[
+|v_i-C(a_r)_i|\le\tfrac12\quad\text{for every }i.
+\]
+Every feasible vector therefore satisfies
+\begin{equation}\label{eq:rounded}
+|vz|\le H:=C+\tfrac12\sum_i Z_i.
+\end{equation}
+This bound is treated as a rational number even when it is a half-integer. The rounding enlarges, rather than reduces, the necessary feasible set.
+
+An exact $LDL^{\mathsf T}$ factorization expresses the quadratic form as
+\[
+z^{\mathsf T}Jz=\sum_{k=0}^{N-1}h_k y_k^2,\qquad
+y_k=z_k+\sum_{i>k}\mu_{ik}z_i,\quad h_k>0.
+\]
+Coordinates are enumerated from $k=N-1$ downward. Once larger-index coordinates are fixed, let $\rho\ge0$ be the remaining quadratic budget. The next coordinate must satisfy
+\[
+h_k(z_k-c_k)^2\le\rho,\qquad
+c_k=-\sum_{i>k}\mu_{ik}z_i.
+\]
+The algorithm enumerates an enclosing integer interval, intersects it with $[-Z_k,Z_k]$, and checks this inequality exactly for every proposed integer. This covers every lattice point in the ellipsoid.
+
+Write a transformed linear constraint as $vz=\sum_i\gamma_i y_i$. If the fixed part has absolute value $A$, the unfixed part can change it by at most
+\[
+\sqrt{\rho V},\qquad V=\sum_{i\le k}\frac{\gamma_i^2}{h_i}.
+\]
+A branch is pruned only after exact verification of $A>H$ and $(A-H)^2>\rho V$. Floating-point arithmetic merely selects promising constraints to test; it cannot itself authorize exclusion. All rounded point constraints are checked exactly at each leaf.
+
+\paragraph{A second enumeration path.}
+The crosscheck disables early point-constraint pruning entirely. It visits every ellipsoid lattice point and applies~\eqref{eq:rounded} only at the leaves. Before using fixed-width integer arrays, it checks bounds ruling out overflow. The two paths share certificate data and some basic computations, so agreement is an algorithmic crosscheck, not a wholly independent software proof.
+
+\section{Symmetry and classification of the remaining candidates}
+\subsection{An integral decomposition and antisymmetric exclusion}
+\begin{lemma}\label{lem:decomposition}
+Every $q\in\Z[x]$ of degree at most 32 admits a representation
+\[
+q(x)=A(t)+xB(t),\qquad t=x(1-x),
+\]
+where $A,B\in\Z[t]$, $\deg A\le16$, and $\deg B\le15$.
+\end{lemma}
+\begin{proof}
+Start with $1=1+x\cdot0$. Since $x^2=x-t$, multiplication by $x$ transforms the coefficient pair by
+\[
+(A,B)\longmapsto(-tB,A+B).
+\]
+For the monomial $x^k$, induction gives degree bounds $\lfloor k/2\rfloor$ and $\lfloor(k-1)/2\rfloor$, respectively, with the zero polynomial interpreted in the usual way. Integer linear combinations prove the assertion. No division by two is involved.
+\end{proof}
+
+Using symmetry of $F$ and the triangle inequality, any potential competitor satisfies
+\begin{align}
+p(x)-p(1-x)&=F(x)(2x-1)B(x(1-x)),\notag\\
+\norm{p-p(1-\cdot)}_{[0,1]}&\le2U.\label{eq:anti}
+\end{align}
+We apply Section~\ref{sec:method} to all integer $B$ of degree at most 15. Take rational points $x=m/L$ with $L=10000$, and put $D=L^2$, $n=m(L-m)$. For monomials $t^j$, exact normalized evaluations are represented by the integer numerators
+\begin{align*}
+v_j(m)={}&(2m-L)n^{44}(D-4n)^7(D-5n)^4\\
+&\cdot(29n^2-11nD+D^2)n^jD^{15-j},\quad 0\le j\le15,
+\end{align*}
+and the common rational denominator $K_-=2ULD^{72}$. Evaluations in the chosen basis are the corresponding integer combinations of these numerators. No square-root approximation to $2x-1$ is needed. Sampling only in $[0,1/2]$ already provides sufficient necessary conditions for exclusion.
+
+\begin{certificate}[Vanishing of the antisymmetric remainder]\label{cert:anti}
+The file \file{antisymmetric146_certificate.json} supplies a 16-dimensional unimodular basis, 101 weighted Gram points, and 277 point constraints. Its coordinate bounds are
+\[
+Z_-=(3,2,2,2,3,2,2,3,2,2,1,2,2,2,2,1).
+\]
+The only integer vector satisfying the necessary ellipsoid and all point constraints is zero.
+\end{certificate}
+The verifier \file{verify146_antisymmetric.py} reconstructs the evaluations, matrices, and bounds, then visits 12,457 nodes. The crosscheck without early point-constraint pruning visits 111,365 nodes and checks all 22,551 ellipsoid lattice points, again retaining only zero.
+
+It follows that $B=0$ in~\eqref{eq:anti}. Every potential competitor therefore has the form
+\begin{equation}\label{eq:symmetric}
+p(x)=W(t)R(t),\qquad R\in\Z[t]\setminus\{0\},\quad\deg R\le16.
+\end{equation}
+This conclusion covers polynomials that were not initially assumed symmetric and invokes no optimality result for $m_{145}$.
+
+\subsection{Complete enumeration of the symmetric remainder}
+Represent $R$ in a 17-dimensional unimodular basis. At a rational point $t=n/D$, the monomial evaluation numerators and common denominator are
+\begin{align*}
+v_j(n)&=n^{44}(D-4n)^7(D-5n)^4(29n^2-11nD+D^2)n^jD^{16-j},\\
+K_+&=UD^{73},\qquad 0\le j\le16.
+\end{align*}
+Here the sampling denominator $D$ is specified by the symmetric certificate; it is a separate parameter from $D=L^2$ in the preceding search.
+
+\begin{certificate}[Classification of symmetric candidates]\label{cert:symmetric}
+The coordinate bounds in \file{search146_certificate.json} are
+\[
+Z_+=(2,4,3,4,3,2,2,3,4,4,2,3,2,2,2,2,2).
+\]
+Its 382 point constraints have $H=2^{32}+23$. Enumeration retains precisely
+\[
+0,\qquad\pm(e_3-e_{10}),\qquad\pm(e_2+e_{10}),
+\]
+where subscripts on $e_i$ start at one. The four nonzero vectors correspond to $\pm Q_A$ and $\pm Q_*$.
+\end{certificate}
+The verifier \file{verify146_search.py} visits 96,402 nodes. The crosscheck without early point-constraint pruning visits 1,882,000 nodes and tests all 494,677 ellipsoid lattice points, obtaining exactly the same set.
+
+\begin{table}[htbp]
+\centering
+\caption{Local verification statistics for the two finite exclusions.}
+\begin{tabular}{lrr}
+\toprule
+Quantity & Antisymmetric & Symmetric\\
+\midrule
+Integer dimension &16&17\\
+Point constraints &277&382\\
+Nodes with early point pruning &12,457&96,402\\
+Nodes without early point pruning &111,365&1,882,000\\
+Ellipsoid lattice points &22,551&494,677\\
+Surviving vectors, including zero &1&5\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Enumeration of necessary conditions does not automatically establish that each surviving point is feasible. It establishes that every feasible polynomial occurs in the surviving set. The next section certifies the actual norms of both nonzero candidate pairs.
+
+\section{Exact norms and completion of the proof}\label{sec:norm}
+For $Q(t)=c\prod_i f_i(t)^{e_i}$, differentiation gives
+\[
+Q'(t)=c\prod_i f_i(t)^{e_i-1}
+\left(\sum_i e_i f_i'(t)\prod_{j\ne i}f_j(t)\right).
+\]
+At every root of an $f_i$, the value of $Q$ is zero. It remains to isolate all roots of the parenthesized polynomial in $(0,1/4)$ and to compare the corresponding absolute values with the endpoint values. Exact root counts certify that the rational isolating intervals are disjoint and complete. Rational interval arithmetic then bounds $|Q|$ over each interval.
+
+For $Q_*$, the primitive part of the parenthesized polynomial is
+\begin{align*}
+D_*(t)={}&196062186740t^{13}-476958135957t^{12}\\
+&+533118950248t^{11}-362483132240t^{10}\\
+&+167250919547t^9-55293946644t^8\\
+&+13473941428t^7-2449959874t^6+332363204t^5\\
+&-33220175t^4+2377554t^3-115364t^2+3401t-46.
+\end{align*}
+It has 11 real roots in $(0,1/4)$. Let $\alpha$ denote its unique root in
+\begin{equation}\label{eq:alpha}
+\left(\frac{1393840441137}{10^{13}},\frac{1393840441138}{10^{13}}\right).
+\end{equation}
+This interval contains no root of a factor of $Q_*$. Strict interval comparisons show that $\alpha$ is the unique maximizer of $|Q_*|$ on the $t$-interval. Consequently, the exact value in the main theorem is
+\begin{equation}\label{eq:exact}
+m_{146}=|Q_*(\alpha)|.
+\end{equation}
+This specifies a real algebraic number by integer polynomials and a rational isolating interval, rather than substituting a decimal approximation for an exact answer.
+
+\begin{certificate}[Final norm comparison]\label{cert:norm}
+The file \file{finalists146_certificate.json} supplies complete critical-point certificates for both candidates. Exact verification gives
+\[
+L_*<\norm{Q_*}_{[0,1/4]}<U_*
+\]
+and, with $L_A=8.39524760655209405079\times10^{-55}$,
+\[
+L_A<\norm{Q_A}_{[0,1/4]}<U.
+\]
+Since $U_*<L_A$, the polynomial $Q_*$ is strictly better than $Q_A$. The verifier also checks the identities linking each candidate to its search vector, factorization, and critical polynomial.
+\end{certificate}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $0\ne p\in\Z[x]$ with $\deg p\le146$. If $\norm p_{[0,1]}>U$, Certificate~\ref{cert:norm} immediately shows that $p$ cannot improve on $P_*$. Otherwise Certificate~\ref{cert:factor} gives $p=Fq$. Lemma~\ref{lem:decomposition} and Certificate~\ref{cert:anti} force symmetry, yielding~\eqref{eq:symmetric}. Certificate~\ref{cert:symmetric} leaves only the two pairs of candidates. Certificate~\ref{cert:norm} strictly excludes $\pm Q_A(x(1-x))$. Thus the only minimizers are $\pm P_*$, with exact value~\eqref{eq:exact} and the asserted rational bounds.
+\end{proof}
+
+\section{Reproducibility and scope of verification}
+The article must be read together with its computational supplement. The integer matrices, sampling nodes, and root-isolating intervals are finite proof data, not optional background material.
+
+\subsection{Verification entry points}
+Place the certificate files and Python verifiers in one directory, install the dependencies listed in \file{requirements.txt}, and run
+\begin{verbatim}
+python verify146_complete.py
+python crosscheck146_v2.py
+\end{verbatim}
+Do not use Python's \file{-O} option: it disables assertions. The original local environment used Python 3.12, SymPy 1.14.0, and NumPy 2.5.4. Check file hashes before running, and work in a copy because execution rewrites some result files.
+
+The complete entry point invokes the symmetric search, which first invokes the antisymmetric exclusion; that in turn invokes the initial norm and forced-factor checks. Both searches reconstruct their necessary conditions and enumerate afresh rather than trusting saved result logs. The complete verifier then certifies the actual candidate norms and uniqueness.
+
+\subsection{Certificate organization}
+\begin{description}
+\item[Initial and divisibility data.]
+\file{candidate146_certificate.json} stores the initial candidate and norm bounds, root intervals, Markov multiplicities, and interpolation nodes and exponent updates for all 35 steps.
+\item[Antisymmetric exclusion.]
+\file{antisymmetric146_certificate.json} stores the 16-dimensional integer basis, Gram nodes and weights, rational ellipsoid, coordinate bounds, and rounded integer point constraints.
+\item[Symmetric exclusion.]
+\file{search146_certificate.json} stores the analogous 17-dimensional data. The remainder polynomial is not restricted to products drawn from a preselected factor library.
+\item[Final norm certificates.]
+\file{finalists146_certificate.json} stores candidate coordinates, factorizations, critical polynomials, all required real-root intervals, and strict norm bounds.
+\end{description}
+The corresponding programs are \file{verify146.py}, \file{verify146_antisymmetric.py}, \file{verify146_search.py}, and \file{verify146_complete.py}. The second enumeration path is implemented in \file{crosscheck146_v2.py}. Logs and result files document local execution but do not replace re-execution and inspection.
+
+\subsection{Trust assumptions and independent review}
+Decisions establishing divisibility, pruning branches, and comparing norms use integers and rationals. Root counting and isolation rely on SymPy, and execution also depends on the Python interpreter and underlying numerical libraries. The two enumeration paths share some assumptions and code structure. Their agreement does not exclude a common modeling error.
+
+No external independent audit or proof-assistant formalization is claimed. An independent reviewer should especially check the leading-coefficient exponents in resultant estimates, the validity of reflection bounds, the exact evaluation embeddings, the completeness of integer ranges, and coverage of all critical points. The accompanying English review instructions specify these tasks. This edition translates and organizes the existing v2 argument; it does not represent a new independent verification of that argument.
+
+\section{What the result establishes}
+The problem asks how small one can make the largest absolute value of a nonzero polynomial on the entire interval $[0,1]$, using integer coefficients and no more than 146 degrees. It controls the worst point, not just sampled points or an average error.
+
+The result supplies a concrete polynomial and finite certificates establishing that no admissible polynomial does better. Apart from multiplication by $-1$, the optimum is unique. The essential reduction turns infinitely many integer coefficient choices and a continuum of pointwise constraints into finite checks that preserve every possible competitor. This resolves the specified degree-146 instance within the stated computer-assisted framework; it does not solve every degree or determine the asymptotic integer Chebyshev constant.
+
+\begin{thebibliography}{9}
+\bibitem{meichsner}
+Alan Meichsner.
+\emph{The Integer Chebyshev Problem: Computational Explorations}.
+Ph.D. thesis, Simon Fraser University, 2009.
+\href{https://www.collectionscanada.gc.ca/obj/thesescanada/vol2/002/NR59810.PDF}{Library and Archives Canada digital copy}.
+
+\bibitem{hare}
+Kevin G. Hare and Philip W. Hodges.
+\emph{Applications of Integer Semi-Infinite Programming to the Integer Chebyshev Problem}.
+arXiv:1804.05985v2, 2018.
+\url{https://arxiv.org/abs/1804.05985}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,29 @@
+PASS: degree 146, all critical points covered, unique maximizing t, strict rational norm bounds.
+PASS: initial Markov/resultant forced factors.
+PASS: 35 exact interpolation/resultant steps; final exponents [44, 44, 14, 4, 1] residual degree 32
+STAGE 1 ONLY: upper bound and reduction verified; global optimality is handled by verify146_complete.py.
+PASS: integral symmetric/antisymmetric decomposition through degree 32.
+PASS: unimodular basis, necessary rational ellipsoid, coordinate bounds, 277 rounded point constraints.
+LEAF [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+PASS: only S=0 satisfies the necessary conditions. All competitors below U are symmetric, without any degree-145 optimality theorem.
+ANTISYMMETRIC COMPLETE nodes 12457 seconds 1.3985915184020996
+PASS: unimodular basis, necessary rational ellipsoid, coordinate bounds, 382 rounded point constraints.
+LEAF [0, -1, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0]
+LEAF [0, 0, 1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0]
+LEAF [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+LEAF [0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+LEAF [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+COMPLETE nodes 96402 leaves 5 seconds 12.734496355056763
+Only zero and signed INITIAL candidate: False (the other pair is compared by verify146_complete.py)
+PASS: every nonzero surviving vector is covered by a certified norm comparison.
+PROVED: m_146 is the norm of finalist 1 and its only minimizers are this polynomial and its negative.
+Exact value: |Q(alpha)|, with Q and the isolated maximizing root alpha specified in finalists146_certificate.json.
+Norm strictly between 83134635866247779798537339/100000000000000000000000000000000000000000000000000000000000000000000000000000000 and 4156731793312388989926867/5000000000000000000000000000000000000000000000000000000000000000000000000000000
+Symmetry proved by exact antisymmetric exclusion; NO degree-145 optimality theorem used.
+antisymmetric146 COMPLETE {'method': 'Exact rational ellipsoid enumeration without early point-constraint pruning; integer point tests at every ellipsoid leaf.', 'nodes': 111365, 'ellipsoid_integer_points': 22551, 'survivors': [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], 'matches_pruned_search': True, 'elapsed_seconds': 6.623213768005371}
+search146 CROSSCHECK 400000 ellipsoid points 93328 seconds 24.9
+search146 CROSSCHECK 800000 ellipsoid points 198930 seconds 48.8
+search146 CROSSCHECK 1200000 ellipsoid points 330853 seconds 70.8
+search146 CROSSCHECK 1600000 ellipsoid points 429587 seconds 94.8
+search146 COMPLETE {'method': 'Exact rational ellipsoid enumeration without early point-constraint pruning; integer point tests at every ellipsoid leaf.', 'nodes': 1882000, 'ellipsoid_integer_points': 494677, 'survivors': [[0, -1, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]], 'matches_pruned_search': True, 'elapsed_seconds': 112.44151401519775}
+PASS: both independent enumeration paths agree for both symmetry and minimization.

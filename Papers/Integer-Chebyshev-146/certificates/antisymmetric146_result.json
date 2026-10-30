@@ -1,0 +1,27 @@
+{
+  "nodes": 12457,
+  "pruned": 7668,
+  "leaves": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "only_zero": true,
+  "elapsed_seconds": 1.3976097106933594,
+  "scope": "No degree-145 optimality result is used. Strong factors plus this exclusion force reflection symmetry."
+}
